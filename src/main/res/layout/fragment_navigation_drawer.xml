@@ -22,24 +22,24 @@
 
     <TextView
         android:id="@+id/btnCallNow"
+        style="@style/btnFillSelection_greenStroke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/value_10dp"
         android:layout_marginLeft="@dimen/value_15dp"
         android:layout_marginRight="@dimen/value_15dp"
-        style="@style/btnFillSelection_greenStroke"
-        android:text="@string/call_now_string"/>
+        android:text="@string/call_now_string" />
 
     <TextView
         android:id="@+id/btnPostBusiness"
+        style="@style/btnDeepSelection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/value_10dp"
         android:layout_marginLeft="@dimen/value_15dp"
         android:layout_marginRight="@dimen/value_15dp"
         android:layout_marginTop="@dimen/value_10dp"
-        style="@style/btnDeepSelection"
-        android:text="@string/post_business_string"/>
+        android:text="@string/post_business_string" />
 
 
     <LinearLayout

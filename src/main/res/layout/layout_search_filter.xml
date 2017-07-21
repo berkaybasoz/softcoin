@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="City"
+            android:text="Şehir"
             android:textColor="@color/city_area_text_color"
             android:textSize="@dimen/value_18sp" />
 
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Area"
+            android:text="Bölge"
             android:textColor="@color/city_area_text_color"
             android:textSize="@dimen/value_18sp" />
 

@@ -29,6 +29,8 @@ import com.audacityit.finder.activity.LandingActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.audacityit.finder.util.Constants.FINDER_HOTLINE;
 import static com.audacityit.finder.util.Constants.JF_CONTACT_NUMBER;
@@ -459,5 +461,8 @@ public class UtilMethods {
         return Uri.parse("android.resource://" + context.getPackageName() + "/drawable/" + imageName).toString();
     }
 
-
+    public static String getFormattedDateSimple(Long dateTime) {
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        return newFormat.format(new Date(dateTime));
+    }
 }

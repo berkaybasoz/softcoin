@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -17,16 +18,25 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.audacityit.finder.R;
+import com.audacityit.finder.activity.ActivityOrderHistory;
 import com.audacityit.finder.activity.MapActivity;
 import com.audacityit.finder.adapter.ImagePagerAdapter;
+import com.audacityit.finder.adapter.ProductListAdapter;
+import com.audacityit.finder.adapter.ResultListAdapter;
+import com.audacityit.finder.callback.ProductListCallbacks;
+import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.Comment;
 import com.audacityit.finder.model.Item;
+import com.audacityit.finder.model.Order;
+import com.audacityit.finder.model.Product;
 import com.audacityit.finder.util.CustomRatingBar;
+import com.audacityit.finder.util.DatabaseHandler;
 import com.audacityit.finder.util.ExpandableTextView;
 import com.audacityit.finder.util.PhoneCallDialog;
 import com.audacityit.finder.util.UtilMethods.InternetConnectionListener;
@@ -43,11 +53,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.audacityit.finder.util.Constants.ITEM_TYPE_COMPANY;
+import static com.audacityit.finder.util.Constants.JF_DATA;
 import static com.audacityit.finder.util.Constants.JF_DATE;
+import static com.audacityit.finder.util.Constants.JF_DESCRIPTION;
+import static com.audacityit.finder.util.Constants.JF_ENTRY;
+import static com.audacityit.finder.util.Constants.JF_ID;
+import static com.audacityit.finder.util.Constants.JF_IMAGES;
+import static com.audacityit.finder.util.Constants.JF_ITEM_TYPE;
 import static com.audacityit.finder.util.Constants.JF_NAME;
+import static com.audacityit.finder.util.Constants.JF_PRODUCT_LIST;
 import static com.audacityit.finder.util.Constants.JF_RATING_ARRAY;
 import static com.audacityit.finder.util.Constants.JF_REVIEW;
+import static com.audacityit.finder.util.Constants.JF_TITLE;
 import static com.audacityit.finder.util.Constants.JF_USER_RATING;
+import static com.audacityit.finder.util.Constants.JF_VERIFICATION;
+import static com.audacityit.finder.util.Constants.JF_PRICE;
 import static com.audacityit.finder.util.Constants.MSG_RATING_SUCCESSFUL;
 import static com.audacityit.finder.util.Constants.NO_DATA_FOUND;
 import static com.audacityit.finder.util.Constants.NULL_LOCATION;
@@ -69,7 +92,7 @@ import static com.audacityit.finder.util.UtilMethods.showNoInternetDialog;
  * @class DetailViewFragment
  * @brief Fragment for showing business in detail view with user comments, rating and gallery view
  */
-public class DetailViewFragment extends Fragment implements InternetConnectionListener {
+public class DetailViewFragment extends Fragment implements ProductListCallbacks, InternetConnectionListener {
 
 
     public static Item itemDetails;
@@ -85,12 +108,15 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
     private InternetConnectionListener internetConnectionListener;
     private int googlePlayServiceStatus;
     private ArrayList<Comment> commentList;
+    private ArrayList<Item> productList;
     private TextView countRatingTV;
     private TextView allRatingTV;
+    private TextView countProductTV;
+    private TextView allProductTV;
     private LayoutInflater inflater;
     private LinearLayout commentLayout;
     private String phoneString = null;
-
+    private ListView resultListView;
 
     public DetailViewFragment() {
 
@@ -105,6 +131,12 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        try {
+            mCallbacks = (ProductListCallbacks) this;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Activity must implement ResultListCallbacks.");
+        }
+
     }
 
     @Override
@@ -117,7 +149,10 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
             nextImgView = (ImageView) rootView.findViewById(R.id.nextImgView);
             countRatingTV = (TextView) rootView.findViewById(R.id.countRatingTV);
             allRatingTV = (TextView) rootView.findViewById(R.id.allRatingTV);
-
+            countProductTV = (TextView) rootView.findViewById(R.id.countProductTV);
+            allProductTV = (TextView) rootView.findViewById(R.id.allProductTV);
+            resultListView = (ListView) rootView.findViewById(R.id.resultListView);
+            setHasOptionsMenu(true);
             //! viewpager to show images with horizontal scrolling.
             imagePager.setAdapter(new ImagePagerAdapter(getActivity(), itemDetails.getImageLargeUrls()));
 
@@ -293,9 +328,9 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
     private void showMap() {
         if (itemDetails.getLatitude() != NULL_LOCATION && itemDetails.getLongitude() != NULL_LOCATION) {
             /** set APP_MAP_MODE to true to enable internet checking
-            * because map needs internet connection
-            * to  show user and business location as well as their distance
-            */
+             * because map needs internet connection
+             * to  show user and business location as well as their distance
+             */
             APP_MAP_MODE = true;
             if (isConnectedToInternet(getActivity())) {
                 if (isGooglePlayServicesAvailable()) {
@@ -324,11 +359,11 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
 
 
     /**
-     * @brief custom dialog for showing rating dialog
-     * @param context application context
-     * @param headline headline in String
+     * @param context        application context
+     * @param headline       headline in String
      * @param positiveString positive text in String
      * @param negativeString negative text in String
+     * @brief custom dialog for showing rating dialog
      */
     private void showRatingDialog(final Context context, String headline,
                                   String positiveString, String negativeString) {
@@ -373,6 +408,7 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
     public void onResume() {
         super.onResume();
         getUserComment();
+        getUserProduct();
     }
 
     //* get all comments for the specific business
@@ -412,7 +448,7 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
                     if (commentList.size() > 0) {
                         allRatingTV.setVisibility(View.VISIBLE);
                         Collections.reverse(commentList);
-                        countRatingTV.setText(commentList.size() + " Rating(s)");
+                        countRatingTV.setText(commentList.size() + " Yorum");
                         addCommentsToView(commentList);
                     } else {
 //                            allRatingTV.setVisibility(View.GONE);
@@ -424,6 +460,69 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
             e.printStackTrace();
         }
     }
+
+
+    private void getUserProduct() {
+
+
+        try {
+            String jsonString = loadJSONFromAsset(getActivity(), "get_user_products");
+            JSONObject jsonObject = new JSONObject(jsonString);
+            productList = new ArrayList<Item>();
+
+            JSONArray resultArray = jsonObject.getJSONArray(JF_DATA);
+            for (int i = 0; i < resultArray.length(); i++) {
+                Item item = new Item();
+                if (resultArray.getJSONObject(i).getString(JF_ITEM_TYPE).equals("product")) {
+                    item.setType(ITEM_TYPE_COMPANY);
+                    JSONObject companyObject = resultArray.getJSONObject(i).getJSONObject(JF_PRODUCT_LIST);
+                    JSONObject itemObject = companyObject.getJSONObject(JF_ENTRY);
+                    item.setId(itemObject.getString(JF_ID));
+                    item.setTitle(itemObject.getString(JF_TITLE));
+                    item.setPrice(itemObject.getString(JF_PRICE));
+                    item.setDescription(itemObject.optString(JF_DESCRIPTION, NO_DATA_FOUND));
+                    item.setVerification(itemObject.optString(JF_VERIFICATION, NO_DATA_FOUND).equals("1") ? true : false);
+                    JSONArray imageArray = companyObject.getJSONArray(JF_IMAGES);
+                    String[] imageThumb = new String[imageArray.length()];
+                    String[] imageLarge = new String[imageArray.length()];
+
+                    for (int j = 0; j < imageArray.length(); j++) {
+                        imageThumb[j] = imageArray.getJSONObject(j).getString(JF_TITLE);
+                        imageLarge[j] = imageArray.getJSONObject(j).getString(JF_TITLE);
+                    }
+
+                    item.setImageThumbUrls(imageThumb);
+                    item.setImageLargeUrls(imageLarge);
+
+
+                    productList.add(item);
+                } else {
+//                    item.setType(ITEM_TYPE_AD);
+//                    JSONObject adObject = resultArray.getJSONObject(i).getJSONObject(JF_AD_LIST);
+//                    item.setId(adObject.getString(JF_ID));
+//                    item.setTitleImg(adObject.getString(JF_IMAGE));
+//                    item.setAdUrl(adObject.getString(JF_AD_URL));
+                }
+            }
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (productList.size() > 0) {
+                        allProductTV.setVisibility(View.VISIBLE);
+                        countProductTV.setText("Toplam " + productList.size() + " Ürün");
+                        addProductsToView(productList);
+                    } else {
+//                            allRatingTV.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void getUserComment(EditText etComment, CustomRatingBar ratingBar) {
         //* make api call here to send user comment to server
@@ -439,7 +538,7 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
                 if (commentList.size() > 0) {
                     allRatingTV.setVisibility(View.VISIBLE);
                     Collections.reverse(commentList);
-                    countRatingTV.setText(commentList.size() + " Rating(s)");
+                    countRatingTV.setText(commentList.size() + " Yorumlar");
                     addCommentsToView(commentList);
                 } else {
 //                            allRatingTV.setVisibility(View.GONE);
@@ -498,8 +597,8 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
     }
 
     /**
-     * @brief methods to add all comments to comment view
      * @param commentList collection of comment to make updates of comment view
+     * @brief methods to add all comments to comment view
      */
     private void addCommentsToView(ArrayList<Comment> commentList) {
         commentLayout.removeAllViews();
@@ -523,6 +622,107 @@ public class DetailViewFragment extends Fragment implements InternetConnectionLi
             }
 
             commentLayout.addView(layout, commentLayout.getChildCount());
+        }
+    }
+
+    private void addProductsToView(ArrayList<Item> itemList) {
+        if (productList != null && productList.size() > 0) {
+            resultListView.setAdapter(new ProductListAdapter(getActivity(), mCallbacks, productList));
+        }
+    }
+
+    private ProductListCallbacks mCallbacks;
+    private int i = -1;
+
+    @Override
+    public void onResultItemSelected(final Item itemDetails) {
+        if (isUserSignedIn(getActivity())) {
+            /*final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                    .setTitleText("Loading");
+            pDialog.show();
+            pDialog.setCancelable(false);
+            new CountDownTimer(800 * 7, 800) {
+                public void onTick(long millisUntilFinished) {
+                    // you can change the progress bar color by ProgressHelper every 800 millis
+                    i++;
+                    switch (i){
+                        case 0:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.blue_btn_bg_color));
+                            break;
+                        case 1:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_deep_teal_50));
+                            break;
+                        case 2:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.success_stroke_color));
+                            break;
+                        case 3:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_deep_teal_20));
+                            break;
+                        case 4:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.material_blue_grey_80));
+                            break;
+                        case 5:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.warning_stroke_color));
+                            break;
+                        case 6:
+                            pDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.success_stroke_color));
+                            break;
+                    }
+                }
+
+                public void onFinish() {
+                    i = -1;
+                    pDialog.setTitleText("Success!")
+                            .setConfirmText("OK")
+                            .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                }
+            }.start();*/
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Satın Al?")
+                    .setContentText(itemDetails.getTitle() + " ürününü satın almak istiyor musunuz?")
+                    .setConfirmText("Evet!")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            // reuse previous dialog instance
+
+                            sDialog.setTitleText("İşlem Başarılı!")
+                                    .setContentText(itemDetails.getTitle() + " ürünü satın aldınız!")
+                                    .setConfirmText("Satın Aldıklarımı Gör")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+
+                                            DatabaseHandler db = new DatabaseHandler(getContext());
+
+                                            Order order = new Order(++Order.TMP_ID, "200", "0");
+                                            Cart c=new Cart();
+                                            c.image=itemDetails.getImageThumbUrls()[0];
+                                            c.price_item=Float.parseFloat(itemDetails.getPrice());
+                                            c.order_id = order.id;
+                                            order.cart_list.add(c);
+
+                                            db.saveOrder(order);
+
+                                            Intent i = new Intent(getContext(), ActivityOrderHistory.class);
+                                            startActivity(i);
+                                        }
+                                    })
+                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        }
+                    })
+                    .setCancelText("İptal")
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+
+                            sDialog.cancel();
+                        }
+                    })
+                    .show();
+        } else {
+            Toast.makeText(getActivity(), getResources().getString(R.string.sign_in_text), Toast.LENGTH_SHORT).show();
         }
     }
 }

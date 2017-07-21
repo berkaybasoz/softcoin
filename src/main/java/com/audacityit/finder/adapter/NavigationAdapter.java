@@ -41,7 +41,7 @@ public class NavigationAdapter extends BaseExpandableListAdapter {
         * on selection mode.
         */
         if (isUserSignedIn(context)) {
-            options = new String[]{"Home", "Profile", "Social", "Log out"};
+            options = new String[]{"Ana Sayfa", "Profil", "Sosyal", "Çıkış Yap"};
 
             optionImages = new int[]{R.drawable.ic_home,
                     R.drawable.ic_profile,
@@ -54,7 +54,7 @@ public class NavigationAdapter extends BaseExpandableListAdapter {
                     R.drawable.ic_log_out_tap};
         } else {
 
-            options = new String[]{"Home", "Social"};
+            options = new String[]{"Ana Sayfa", "Sosyal"};
 
             optionImages = new int[]{R.drawable.ic_home,
                     R.drawable.ic_social};

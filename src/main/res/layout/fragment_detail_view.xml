@@ -116,7 +116,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <RelativeLayout android:visibility="gone"
             android:id="@+id/infoView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -206,11 +206,59 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoView"
+            android:id="@+id/productListView">
+            <View
+                android:id="@+id/separator2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/detail_view_separator_bar_color" />
+            <TextView
+                android:id="@+id/allProductTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/separator2"
+                android:layout_margin="@dimen/value_10dp"
+                android:text="Ürünler"
+                android:textColor="@color/green_color"
+                android:textSize="@dimen/value_18sp"
+                 android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/countProductTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/allProductTV"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/allProductTV"
+                android:layout_below="@id/separator2"
+                android:layout_marginRight="@dimen/value_10dp"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/value_15sp"
+                 />
+
+            <ListView
+                android:id="@+id/resultListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/value_5dp"
+                android:divider="@color/result_list_background_color"
+                android:dividerHeight="5dp"
+                android:scrollbars="none"
+                android:layout_below="@+id/allProductTV"/>
+        </RelativeLayout>
+
+
         <View
             android:id="@+id/separator"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/infoView"
+            android:layout_below="@+id/productListView"
             android:background="@color/detail_view_separator_bar_color" />
 
 
@@ -218,9 +266,9 @@
             android:id="@+id/allRatingTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/infoView"
+            android:layout_below="@id/productListView"
             android:layout_margin="@dimen/value_10dp"
-            android:text="All Rating"
+            android:text="Tüm Yorumlar"
             android:textColor="@color/green_color"
             android:textSize="@dimen/value_18sp"
             android:visibility="gone" />
@@ -233,7 +281,7 @@
             android:layout_alignBottom="@id/allRatingTV"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/allRatingTV"
-            android:layout_below="@id/infoView"
+            android:layout_below="@id/productListView"
             android:layout_marginRight="@dimen/value_10dp"
             android:gravity="center_vertical"
             android:textSize="@dimen/value_15sp" />

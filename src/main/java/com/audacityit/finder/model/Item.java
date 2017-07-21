@@ -39,7 +39,7 @@ public class Item {
     private String[] imageLargeUrls;
     private String titleImg;
     private String adUrl;
-
+    private String price;
     /**
      * @brief get title image of item
      * @return titleImg in String
@@ -533,5 +533,13 @@ public class Item {
                 ", imageThumbUrls=" + Arrays.toString(imageThumbUrls) +
                 ", imageLargeUrls=" + Arrays.toString(imageLargeUrls) +
                 '}';
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

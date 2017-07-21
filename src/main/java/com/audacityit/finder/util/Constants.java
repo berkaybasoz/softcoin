@@ -88,6 +88,7 @@ public class Constants {
     public static final String JF_ITEM_TYPE = "item_type";
     public static final String JF_DISTRICT = "district";
     public static final String JF_COMPANY_LIST = "companylist";
+    public static final String JF_PRODUCT_LIST = "productlist";
     public static final String JF_AD_LIST = "addlist";
     public static final String JF_CATEGORY = "Category";
     public static final String JF_ENTRY_TO_CATEGORY = "EntryToCategories";
@@ -95,6 +96,7 @@ public class Constants {
     public static final String JF_ID = "id";
     public static final String JF_NAME = "name";
     public static final String JF_TITLE = "title";
+    public static final String JF_PRICE = "price";
     public static final String JF_ADDRESS = "address";
     public static final String JF_ROOT_ID = "root_id";
     public static final String JF_IMAGE = "image";
@@ -175,5 +177,7 @@ public class Constants {
 
     public static final double DUMMY_LOCATION_LATITUDE = 40.841075;
     public static final double DUMMY_LOCATION_LONGITUDE = 29.305723;
+
+    public static final String COIN = "SCoin";
 
 }
