@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1" android:visibility="invisible"
             android:text="@string/before_tax"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/grey_60"
@@ -63,7 +63,7 @@
             android:id="@+id/price_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ 500"
+            android:text="500 SCoin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />

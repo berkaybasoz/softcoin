@@ -90,7 +90,7 @@ public class ActivityShoppingCart extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle(R.string.title_activity_cart);
+        actionBar.setTitle(R.string.title_activity_history);
         //Tools.systemBarLolipop(this);
     }
 

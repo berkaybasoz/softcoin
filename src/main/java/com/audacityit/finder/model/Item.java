@@ -41,6 +41,8 @@ public class Item {
     private String adUrl;
     private String price;
     private String sellerName;
+    private String totalQuantity;
+    private String leavesQuantity;
     /**
      * @brief get title image of item
      * @return titleImg in String
@@ -550,5 +552,21 @@ public class Item {
 
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
+    }
+
+    public String getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(String totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public String getLeavesQuantity() {
+        return leavesQuantity;
+    }
+
+    public void setLeavesQuantity(String leavesQuantity) {
+        this.leavesQuantity = leavesQuantity;
     }
 }

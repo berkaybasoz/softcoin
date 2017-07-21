@@ -72,6 +72,7 @@ import static com.audacityit.finder.util.Constants.JF_TITLE;
 import static com.audacityit.finder.util.Constants.JF_USER_RATING;
 import static com.audacityit.finder.util.Constants.JF_VERIFICATION;
 import static com.audacityit.finder.util.Constants.JF_PRICE;
+import static com.audacityit.finder.util.Constants.JF_TOTAL_QUANTITY;
 import static com.audacityit.finder.util.Constants.JF_SELLER_NAME;
 import static com.audacityit.finder.util.Constants.MSG_RATING_SUCCESSFUL;
 import static com.audacityit.finder.util.Constants.NO_DATA_FOUND;
@@ -482,6 +483,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                     item.setId(itemObject.getString(JF_ID));
                     item.setTitle(itemObject.getString(JF_TITLE));
                     item.setPrice(itemObject.getString(JF_PRICE));
+                    item.setTotalQuantity(itemObject.getString(JF_TOTAL_QUANTITY));
                     item.setDescription(itemObject.optString(JF_DESCRIPTION, NO_DATA_FOUND));
                     item.setSellerName(itemObject.optString(JF_SELLER_NAME, NO_DATA_FOUND));
                     item.setVerification(itemObject.optString(JF_VERIFICATION, NO_DATA_FOUND).equals("1") ? true : false);
@@ -686,7 +688,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                     .setConfirmText("Evet!")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(final SweetAlertDialog sDialog) {
                             // reuse previous dialog instance
 
                             sDialog.setTitleText("İşlem Başarılı!")
@@ -711,16 +713,21 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                                             Intent i = new Intent(getContext(), ActivityOrderHistory.class);
                                             startActivity(i);*/
 
-
-                                            Cart c = new Cart();
-                                            c.amount= ++Order.TMP_ID ;
-                                            c.image = item.getImageThumbUrls()[0];
-                                            c.price_item = Float.parseFloat(item.getPrice());
-                                            c.order_id =Long.parseLong(String.valueOf(++Order.TMP_ID)) ;
+                                            Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
+                                            Long stock = orderId;
+                                            int amount=1;
+                                            Cart c = new Cart(Long.parseLong(item.getId()),
+                                                    item.getSellerName() + " - " + item.getTitle(),
+                                                    item.getImageThumbUrls()[0],
+                                                    amount,
+                                                    stock,
+                                                    Float.parseFloat(item.getPrice()),
+                                                    System.currentTimeMillis());
                                             db.saveCart(c);
 
                                             Intent i = new Intent(getContext(), ActivityShoppingCart.class);
                                             startActivity(i);
+
                                         }
                                     })
                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);

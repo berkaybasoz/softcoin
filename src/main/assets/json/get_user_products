@@ -12,7 +12,8 @@
           "price": "7.5",
           "description": "6 çay al 5 çay parası öde kampanyası",
           "apverification": "1",
-          "type": "1"
+          "type": "1",
+          "total_quantiy": "6"
         },
         "Imagefile": [
           {
