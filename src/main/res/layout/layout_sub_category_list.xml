@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/subCatTxtView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Computer"
+        android:padding="@dimen/value_15dp"
+        android:textSize="@dimen/value_13sp"
+        android:textColor="@drawable/clickable_text_bg"
+        android:background="@drawable/list_row_bg"
+        android:ellipsize="end" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_arrow"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/value_20dp" />
+
+</RelativeLayout>

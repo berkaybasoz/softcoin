@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_bg_transparent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/navItemImgView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:layout_marginRight="@dimen/value_10dp"
+        android:src="@drawable/ic_profile" />
+
+    <com.audacityit.finder.util.CustomTextView
+        android:id="@+id/navItemTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/navItemImgView"
+        android:padding="@dimen/value_15dp"
+        android:text="Profile"
+        android:textColor="@drawable/nav_list_text_bg"
+        android:textSize="@dimen/value_15sp" />
+
+    <ImageView
+        android:id="@+id/navItemArrowImgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/value_20dp"
+        android:src="@drawable/ic_arrow" />
+
+
+</RelativeLayout>

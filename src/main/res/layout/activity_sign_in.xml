@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_blur_wallpaper"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <ImageView
+            android:id="@+id/crossImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="@dimen/value_20dp"
+            android:src="@drawable/ic_cross_normal" />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/value_10dp"
+            android:src="@drawable/ic_skip_white" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/value_40dp"
+        android:paddingRight="@dimen/value_40dp">
+
+        <com.audacityit.finder.util.FloatLabel
+            android:id="@+id/etMobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_phone_number"
+            android:inputType="phone"
+            android:textColorHint="@color/hint_color_green" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/value_10dp"
+            android:layout_marginTop="@dimen/value_10dp"
+            android:background="@color/bar_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.audacityit.finder.util.FloatLabel
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_password"
+                android:inputType="text"
+                android:textColorHint="@color/hint_color_green" />
+
+            <ImageView
+                android:id="@+id/showPasswordImg"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="@dimen/value_10dp"
+                android:clickable="true"
+                android:src="@drawable/ic_show_password" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/value_10dp"
+            android:layout_marginTop="@dimen/value_10dp"
+            android:background="@color/bar_color" />
+
+
+        <TextView
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/value_20dp"
+            style="@style/btnDeepSelection"
+            android:text="@string/sign_in_string"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/value_10dp">
+
+            <TextView
+                android:id="@+id/btnForgotPasswordTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:maxLines="2"
+                android:text="@string/forget_password_string"
+                android:textColor="@color/greenish"
+                android:textSize="@dimen/value_15sp" />
+
+            <TextView
+                android:id="@+id/btnNewUserTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:maxLines="2"
+                android:text="@string/new_user_string"
+                android:textColor="@color/greenish"
+                android:textSize="@dimen/value_15sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/value_15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/white" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

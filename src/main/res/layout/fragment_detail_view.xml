@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/detail_view_background_color"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:id="@+id/parentView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/headingView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_view_image_parent_height"
+            android:layout_margin="@dimen/value_10dp"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/value_5dp"
+            android:paddingRight="@dimen/value_5dp"
+            android:paddingTop="@dimen/value_5dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/detailHeadingImageViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_view_image_height" />
+
+            <ImageView
+                android:id="@+id/prevImgView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/detailHeadingImageViewPager"
+                android:layout_alignLeft="@+id/detailHeadingImageViewPager"
+                android:layout_alignTop="@+id/detailHeadingImageViewPager"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:src="@drawable/ic_arrow_left"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/nextImgView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/detailHeadingImageViewPager"
+                android:layout_alignRight="@+id/detailHeadingImageViewPager"
+                android:layout_alignTop="@+id/detailHeadingImageViewPager"
+                android:layout_marginRight="@dimen/value_10dp"
+                android:src="@drawable/ic_arrow_right" />
+
+
+            <ImageView
+                android:id="@+id/verificationImgView"
+                android:layout_width="@dimen/verificationHeightWidth"
+                android:layout_height="@dimen/verificationHeightWidth"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/value_3dp"
+                android:src="@drawable/ic_verification" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_view_image_gradient_layer_height"
+                android:layout_alignBottom="@+id/detailHeadingImageViewPager"
+                android:layout_alignLeft="@+id/detailHeadingImageViewPager"
+                android:layout_alignRight="@+id/detailHeadingImageViewPager"
+                android:background="@drawable/gradient_layer_white"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/btnWeb"
+                    style="@style/optionButton"
+                    android:text="@string/web_string" />
+
+                <TextView
+                    android:id="@+id/btnEmail"
+                    style="@style/optionButton"
+                    android:text="@string/hint_email" />
+
+                <TextView
+                    android:id="@+id/btnMap"
+                    style="@style/optionButton"
+                    android:text="@string/map_string" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detailHeadingImageViewPager">
+
+
+                <com.audacityit.finder.util.CustomRatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/value_10dp"
+                    app:halfStars="true"
+                    app:maxStars="5"
+                    app:onlyForDisplay="true"
+                    app:starPaddingBottom="@dimen/value_10dp"
+                    app:starPaddingRight="@dimen/value_10dp"
+                    app:starPaddingTop="@dimen/value_10dp" />
+
+                <TextView
+                    android:id="@+id/btnRateNow"
+                    style="@style/rateNowButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/rate_string" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/infoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headingView"
+            android:layout_marginBottom="@dimen/value_20dp"
+            android:layout_marginLeft="@dimen/value_30dp"
+            android:layout_marginRight="@dimen/value_30dp"
+            android:layout_marginTop="@dimen/value_10dp">
+
+            <ImageView
+                android:id="@+id/itemNameImgView"
+                android:layout_width="@dimen/detail_view_icon_height_width"
+                android:layout_height="@dimen/detail_view_icon_height_width"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginRight="@dimen/value_10dp"
+                android:src="@drawable/ic_name" />
+
+            <ImageView
+                android:id="@+id/itemCallImgView"
+                android:layout_width="@dimen/detail_view_icon_height_width"
+                android:layout_height="@dimen/detail_view_icon_height_width"
+                android:layout_below="@+id/itemNameImgView"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginRight="@dimen/value_10dp"
+                android:src="@drawable/ic_call" />
+
+            <ImageView
+                android:id="@+id/itemLocationImgView"
+                android:layout_width="@dimen/detail_view_icon_height_width"
+                android:layout_height="@dimen/detail_view_icon_height_width"
+                android:layout_below="@+id/itemCallImgView"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:src="@drawable/ic_location" />
+
+            <ImageView
+                android:id="@+id/itemTagImgView"
+                android:layout_width="@dimen/detail_view_icon_height_width"
+                android:layout_height="@dimen/detail_view_icon_height_width"
+                android:layout_below="@+id/itemLocationTV"
+                android:src="@drawable/ic_tag" />
+
+            <TextView
+                android:id="@+id/itemNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/itemNameImgView"
+                android:layout_alignTop="@+id/itemNameImgView"
+                android:layout_toRightOf="@+id/itemNameImgView"
+                android:gravity="center_vertical"
+                android:text="@string/no_data" />
+
+            <TextView
+                android:id="@+id/itemPhoneTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/itemCallImgView"
+                android:layout_below="@+id/itemNameImgView"
+                android:layout_toRightOf="@+id/itemCallImgView"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:text="@string/no_data" />
+
+            <TextView
+                android:id="@+id/itemLocationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/itemLocationImgView"
+                android:layout_below="@+id/itemCallImgView"
+                android:layout_marginBottom="@dimen/value_30dp"
+                android:layout_toRightOf="@+id/itemNameImgView"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="4"
+                android:text="@string/no_data" />
+
+            <com.audacityit.finder.util.ExpandableTextView
+                android:id="@+id/itemTagTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/itemTagImgView"
+                android:layout_below="@+id/itemLocationTV"
+                android:layout_toRightOf="@+id/itemNameImgView"
+                android:gravity="center_vertical"
+                android:text="@string/no_data"
+                app:trimLength="90" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/infoView"
+            android:background="@color/detail_view_separator_bar_color" />
+
+
+        <TextView
+            android:id="@+id/allRatingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/infoView"
+            android:layout_margin="@dimen/value_10dp"
+            android:text="All Rating"
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/value_18sp"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/countRatingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/allRatingTV"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/allRatingTV"
+            android:layout_below="@id/infoView"
+            android:layout_marginRight="@dimen/value_10dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/value_15sp" />
+
+
+        <LinearLayout
+            android:id="@+id/commentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/allRatingTV"
+            android:layout_marginBottom="@dimen/value_10dp"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:layout_marginRight="@dimen/value_10dp"
+            android:layout_marginTop="@dimen/value_5dp"
+            android:orientation="vertical" />
+
+    </RelativeLayout>
+
+</ScrollView>

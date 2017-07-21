@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+    <ImageView
+        android:id="@+id/catBannerImageView"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_layer_black"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/catImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/value_10dp" />
+
+
+        <TextView
+            android:id="@+id/catNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:text="Automobile"
+            android:textSize="@dimen/value_20sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
+
+    <TextView
+        android:id="@+id/userNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/value_10dp"
+        android:layout_toLeftOf="@+id/dateTV"
+        android:ellipsize="end"
+        android:padding="@dimen/value_5dp"
+        android:textColor="@color/green_color"
+        android:textSize="@dimen/value_18sp" />
+
+    <TextView
+        android:id="@+id/dateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/userNameTV"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/userNameTV"
+        android:gravity="center_vertical"
+        android:textColor="@color/comment_text_color"
+        android:textSize="@dimen/value_15sp" />
+
+    <com.audacityit.finder.util.CustomRatingBar
+        android:id="@+id/commentRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/detail_view_comment_rating_bar_height"
+        android:layout_below="@+id/userNameTV"
+        android:layout_marginTop="@dimen/value_5dp"
+        app:halfStars="true"
+        app:maxStars="5"
+        app:onlyForDisplay="true"
+        app:starPaddingBottom="@dimen/value_5dp"
+        app:starPaddingRight="@dimen/value_5dp"
+        app:starPaddingTop="@dimen/value_5dp" />
+
+    <TextView
+        android:id="@+id/commentTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/commentRatingBar"
+        android:gravity="left|fill_horizontal"
+        android:padding="@dimen/value_5dp"
+        android:textColor="@color/comment_text_color"
+        android:textSize="@dimen/value_15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/commentTV"
+        android:layout_marginBottom="@dimen/value_5dp"
+        android:layout_marginTop="@dimen/value_5dp"
+        android:background="@color/comment_text_color" />
+
+
+</RelativeLayout>

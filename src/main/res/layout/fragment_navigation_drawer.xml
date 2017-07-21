@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navigation_background"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context="com.audacityit.finder.fragment.NavigationDrawerFragment">
+
+
+    <ImageView
+        android:id="@+id/logoImgView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/value_10dp"
+        android:layout_marginTop="@dimen/value_10dp"
+        android:clickable="true"
+        android:padding="@dimen/value_10dp"
+        android:src="@drawable/ic_skip_green" />
+
+
+    <TextView
+        android:id="@+id/btnCallNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/value_10dp"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:layout_marginRight="@dimen/value_15dp"
+        style="@style/btnFillSelection_greenStroke"
+        android:text="@string/call_now_string"/>
+
+    <TextView
+        android:id="@+id/btnPostBusiness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/value_10dp"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:layout_marginRight="@dimen/value_15dp"
+        android:layout_marginTop="@dimen/value_10dp"
+        style="@style/btnDeepSelection"
+        android:text="@string/post_business_string"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ExpandableListView
+            android:id="@+id/navigationListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:groupIndicator="@null"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/signInSignUpView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/value_10dp"
+                android:layout_weight="1"
+                style="@style/btnFillSelection_greenStroke"
+                android:text="@string/sign_up_string"/>
+
+            <TextView
+                android:id="@+id/btnSignIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/value_10dp"
+                android:layout_weight="1"
+                style="@style/btnDeepSelection"
+                android:text="@string/sign_in_string"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

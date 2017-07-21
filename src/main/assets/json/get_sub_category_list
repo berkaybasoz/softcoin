@@ -1,0 +1,106 @@
+{
+  "largeImagePath": "http://www.audacityit.com/categoryImages/",
+  "thumbImagePath": "http://www.audacityit.com/categoryImages/thumb/",
+  "data": [
+    {
+      "id": "1350",
+      "title": "Börek"
+    },
+    {
+      "id": "772",
+      "title": "Burger"
+    },
+    {
+      "id": "774",
+      "title": "Cafe"
+    },
+    {
+      "id": "776",
+      "title": "Çin Mutfağı"
+    },
+    {
+      "id": "779",
+      "title": "Deniz Mahsulleri"
+    },
+    {
+      "id": "780",
+      "title": "Dondurma"
+    },
+    {
+      "id": "782",
+      "title": "Döner"
+    },
+    {
+      "id": "783",
+      "title": "Dünya Mutfağı"
+    },
+    {
+      "id": "790",
+      "title": "Ev Yemekleri"
+    },
+    {
+      "id": "793",
+      "title": "Fast Food"
+    },
+    {
+      "id": "802",
+      "title": "Kahve"
+    },
+    {
+      "id": "1007",
+      "title": "Kebap & Türk Mutfağı"
+    },
+    {
+      "id": "1016",
+      "title": "Kumpir"
+    },
+    {
+      "id": "1020",
+      "title": "Psata & Tatlı"
+    },
+    {
+      "id": "1022",
+      "title": "Pide"
+    },
+    {
+      "id": "103",
+      "title": "Pizza & İtalyan"
+    },
+    {
+      "id": "197",
+      "title": "Tavuk"
+    },
+    {
+      "id": "1083",
+      "title": "Köfte"
+    },
+    {
+      "id": "1089",
+      "title": "Kokoreç"
+    },
+    {
+      "id": "1351",
+      "title": "Japon Mutfağı"
+    },
+    {
+      "id": "1097",
+      "title": "Sandwich"
+    },
+    {
+      "id": "1354",
+      "title": "Çiğ Köfte"
+    },
+    {
+      "id": "1063",
+      "title": "Türk Mutfağı"
+    },
+    {
+      "id": "1288",
+      "title": "Snacks"
+    },
+    {
+      "id": "306",
+      "title": "Tümü"
+    }
+  ]
+}

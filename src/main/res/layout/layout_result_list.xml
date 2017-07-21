@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/result_list_item_height">
+
+    <RelativeLayout
+        android:id="@+id/parentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/result_list_bg">
+
+        <ImageView
+            android:id="@+id/verificationImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/value_10dp"
+            android:src="@drawable/ic_verification"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/itemIconImgView"
+            android:layout_width="@dimen/result_list_image_width"
+            android:layout_height="@dimen/result_list_image_height"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/value_5dp"
+            android:src="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/itemTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemIconImgView"
+            android:layout_marginLeft="@dimen/value_5dp"
+            android:layout_toLeftOf="@+id/verificationImgView"
+            android:layout_toRightOf="@+id/itemIconImgView"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="AB Food And Bakery"
+            android:textColor="@color/black_text_color"
+            android:textSize="@dimen/value_16sp" />
+
+
+        <TextView
+            android:id="@+id/itemAddressTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/itemTitleTV"
+            android:layout_below="@+id/itemTitleTV"
+            android:layout_above="@+id/ratingBar"
+            android:layout_marginTop="@dimen/value_3dp"
+            android:layout_marginBottom="@dimen/value_3dp"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingRight="@dimen/value_5dp"
+            android:text="Holding no-7, Road-Gaeeb-e-Nawaz Avenue, Sector-11, Dhaka"
+            android:textColor="@color/address_text_color"
+            android:textSize="@dimen/value_13sp" />
+
+
+        <com.audacityit.finder.util.CustomRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="@dimen/rating_bar_width"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/itemTitleTV"
+            android:layout_alignBottom="@+id/itemIconImgView"
+            android:paddingBottom="@dimen/value_5dp"
+            app:halfStars="true"
+            app:maxStars="5"
+            app:onlyForDisplay="true"
+            app:starPaddingRight="@dimen/value_5dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

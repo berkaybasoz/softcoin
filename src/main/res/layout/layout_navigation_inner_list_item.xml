@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_bg_transparent">
+
+    <TextView
+        android:id="@+id/navInnerItemTxtView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/value_15dp"
+        android:paddingLeft="@dimen/value_70dp"
+        android:paddingTop="@dimen/value_15dp"
+        android:text="facebook"
+        android:textColor="@drawable/nav_inner_list_text_bg"
+        android:textSize="@dimen/value_15sp" />
+</RelativeLayout>

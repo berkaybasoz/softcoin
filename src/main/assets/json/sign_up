@@ -1,0 +1,10 @@
+{
+  "success": "Signup Success",
+  "Contact": {
+    "email": "berkaybasoz@gmail.com",
+    "name": "User",
+    "gender": "male",
+    "contactno": "8801600000000",
+    "verificationcode": 123456
+  }
+}

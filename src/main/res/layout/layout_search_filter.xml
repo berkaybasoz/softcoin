@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filterLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/search_filter_bg"
+    android:clickable="true"
+    android:padding="@dimen/value_5dp">
+
+    <ImageView
+        android:id="@+id/imageViewFilterIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/value_5dp"
+        android:padding="@dimen/value_5dp"
+        android:src="@drawable/ic_location_pin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/imageViewFilterIcon"
+        android:layout_alignTop="@id/imageViewFilterIcon"
+        android:layout_toRightOf="@+id/imageViewFilterIcon"
+        android:gravity="center_vertical"
+        android:text="@string/search_filter_title"
+        android:textColor="@color/location_text_color"
+        android:textSize="@dimen/value_18sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewFilterIcon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="@dimen/value_10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="City"
+            android:textColor="@color/city_area_text_color"
+            android:textSize="@dimen/value_18sp" />
+
+        <Spinner
+            android:id="@+id/spinnerDistrict"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dialog" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutCity"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="@dimen/value_10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Area"
+            android:textColor="@color/city_area_text_color"
+            android:textSize="@dimen/value_18sp" />
+
+        <Spinner
+            android:id="@+id/spinnerArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dialog" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/buttonApply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutArea"
+        style="@style/btnDeepSelection"
+        android:text="@string/apply_string"
+        android:textSize="@dimen/value_15sp"
+        android:layout_margin="@dimen/value_10dp" />
+
+</RelativeLayout>

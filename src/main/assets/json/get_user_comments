@@ -1,0 +1,40 @@
+{
+  "Rating": [
+    {
+      "rating": "5",
+      "review": "Piyasada ki en iyi kafe",
+      "name": "Berkay",
+      "date": "2017-07-18 10:26:01"
+    },
+    {
+      "rating": "5",
+      "review": "Kahveleri mükemmel",
+      "name": "Aytekin",
+      "date": "2017-07-22 5:08:21"
+    },
+    {
+      "rating": "5",
+      "review": "Dondurmaları da deneyin",
+      "name": "Gürer",
+      "date": "2017-07-24 10:10:10"
+    },
+    {
+      "rating": "4.5",
+      "review": "Ben bu yeri seviyorum",
+      "name": "Özge",
+      "date": "2015-08-25 17:58:36"
+    },
+    {
+      "rating": "4",
+      "review": "İdare eder",
+      "name": "Gürer",
+      "date": "2017-07-27 13:37:15"
+    },
+    {
+      "rating": "3",
+      "review": "Hiç yoktan iyidir",
+      "name": "Elif",
+      "date": "2017-07-04 12:27:05"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_color">#64BF4F</color>
+    <color name="green_color_2">#65BF50</color>
+    <color name="green_color_3">#469c32</color>
+    <color name="text_color_1">#D4F2DB</color>
+    <color name="text_color_2">#65BF50</color>
+    <color name="bar_color">#8A9689</color>
+    <color name="hint_color_green">#65BF50</color>
+
+    <color name="navigation_background">#FDFCFD</color>
+    <color name="green_color_transparent">#3D6F4C</color>
+    <color name="green_navigation_text_color">#1e9965</color>
+    <color name="green_text_color">#05B859</color>
+    <color name="black_text_color">#404040</color>
+    <color name="greenish">#B8D9BE</color>
+    <color name="greenish_transparent">#50B8D9BE</color>
+    <color name="green_bar_light_color">#00AA47</color>
+    <color name="transparent_white">#50C5E8CA</color>
+    <color name="gray_color">#F0F0F0</color>
+    <color name="result_list_background_color">#E2E2E2</color>
+    <color name="address_text_color">#686868</color>
+    <color name="nav_list_text_color_1">#000000</color>
+    <color name="nav_list_text_color_2">#777777</color>
+    <color name="edit_text_inactive_color">#3D615A</color>
+    <color name="post_business_bg_color">#EEEDEE</color>
+    <color name="post_business_edit_text_color">#75767A</color>
+    <color name="post_business_bar_color">#C9D8C3</color>
+    <color name="search_filter_bg">#f1f1f1</color>
+    <color name="location_text_color">#585858</color>
+    <color name="city_area_text_color">#9b9b9b</color>
+    <color name="detail_view_background_color">#F4F4F4</color>
+    <color name="detail_view_option_button_stroke_color">#80F0F0F0</color>
+    <color name="detail_view_separator_bar_color">#E4E4E4</color>
+    <color name="dialog_bg_color">#E3E3E3</color>
+    <color name="dialog_separator_color">#BDBDBD</color>
+    <color name="map_polyline_color">#F36814</color>
+    <color name="map_info_bg">#50F8F8F8</color>
+    <color name="red_color">#E14747</color>
+    <color name="map_info_text_color">#595959</color>
+    <color name="verification_activity_bg_color">#FFFFFF</color>
+    <color name="comment_text_color">#89939B</color>
+    <color name="filter_background_shadow_color">#44000000</color>
+    <color name="status_bar_color">#469c32</color>
+
+    <color name="colorPrimary">#4DB151</color>
+    <color name="colorPrimaryDark">#429E45</color>
+    <color name="colorPrimaryLight">#5DBA60</color>
+
+    <color name="colorAccent">#FFDE26</color>
+    <color name="colorAccentDark">#F2D21D</color>
+    <color name="colorAccentLight">#FFE552</color>
+
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="grey_40">#999999</color>
+    <color name="grey_60">#666666</color>
+    <color name="grey_80">#37474F</color>
+    <color name="grey_90">#263238</color>
+
+
+    <color name="colorPrice">#429E45</color>
+    <color name="colorAddCart">#FFB300</color>
+    <color name="colorRemoveCart">#666666</color>
+
+    <color name="colorWarning">#FF7043</color>
+    <color name="colorInfo">#5DBA60</color>
+
+    <color name="darkOverlay">#80000000</color>
+    <color name="darkOverlaySoft">#40000000</color>
+    <color name="whiteOverlay">#40FFFFFF</color>
+
+    <color name="drawerHeaderColor">#FFED87</color>
+    <color name="drawerHeaderIcon">#666666</color>
+</resources>

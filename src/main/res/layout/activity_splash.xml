@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/promoScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
+
+        <ImageView
+            android:id="@+id/promoImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_wallpaper"/>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/btnSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_skip"
+        android:clickable="true" />
+
+
+    <TextView
+        android:id="@+id/promoTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/promo_text"
+        android:textSize="@dimen/value_15sp"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/value_10dp"
+        android:layout_marginBottom="@dimen/value_20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo_promo_2"
+        android:layout_above="@+id/promoTv"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

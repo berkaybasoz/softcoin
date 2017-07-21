@@ -1,0 +1,50 @@
+[
+  {
+    "District": {
+      "id": "1",
+      "title": "İstanbul"
+    }
+  },
+  {
+    "District": {
+      "id": "2",
+      "title": "İzmir"
+    }
+  },
+  {
+    "District": {
+      "id": "7",
+      "title": "Ankara"
+    }
+  },
+  {
+    "District": {
+      "id": "3",
+      "title": "Manisa"
+    }
+  },
+  {
+    "District": {
+      "id": "6",
+      "title": "Hatay"
+    }
+  },
+  {
+    "District": {
+      "id": "4",
+      "title": "Sinop"
+    }
+  },
+  {
+    "District": {
+      "id": "5",
+      "title": "Balıkesir"
+    }
+  },
+  {
+    "District": {
+      "id": "8",
+      "title": "Bursa"
+    }
+  }
+]

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/headlineTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/value_15dp"
+        android:paddingRight="@dimen/value_15dp"
+        android:paddingTop="@dimen/value_10dp"
+        android:text="Audacity IT Solutions Limited is A Company"
+        android:textColor="@color/green_color"
+        android:textSize="@dimen/value_20sp" />
+
+    <com.audacityit.finder.util.CustomRatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/rating_bar_height"
+        android:layout_below="@id/headlineTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/value_10dp"
+        android:layout_marginTop="@dimen/value_10dp"
+        android:padding="@dimen/value_5dp"
+        app:halfStars="true"
+        app:maxStars="5"
+        app:onlyForDisplay="false" />
+
+    <EditText
+        android:id="@+id/etComment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rating_dialog_edit_text_height"
+        android:layout_below="@+id/ratingBar"
+        android:layout_marginBottom="@dimen/value_10dp"
+        android:layout_marginLeft="@dimen/value_10dp"
+        android:layout_marginRight="@dimen/value_10dp"
+        android:background="@drawable/rounded_edit_text_bg"
+        android:gravity="start"
+        android:hint="@string/comment_hint"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/value_10dp"
+        android:textColor="@color/black_text_color"
+        android:textColorHint="@color/black_text_color"
+        android:textSize="@dimen/value_15sp" />
+
+
+</RelativeLayout>

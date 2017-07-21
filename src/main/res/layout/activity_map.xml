@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_info_layout_height"
+        android:background="@color/greenish_transparent"
+        android:paddingLeft="@dimen/value_20dp"
+        android:paddingRight="@dimen/value_20dp">
+
+
+        <ImageView
+            android:id="@+id/greenCircleView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_green_circle" />
+
+        <TextView
+            android:id="@+id/userHeadingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_marginRight="@dimen/value_30dp"
+            android:layout_toRightOf="@+id/greenCircleView"
+            android:text="@string/you_string"
+            android:textColor="@color/map_info_text_color"
+            android:textSize="@dimen/value_15sp" />
+
+        <ImageView
+            android:id="@+id/redCircleView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userHeadingTV"
+            android:src="@drawable/ic_red_circle" />
+
+        <TextView
+            android:id="@+id/itemHeadingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_toLeftOf="@+id/distanceView"
+            android:layout_toRightOf="@+id/redCircleView"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Audacity IT Solutions"
+            android:textColor="@color/map_info_text_color"
+            android:textSize="@dimen/value_15sp" />
+
+        <LinearLayout
+            android:id="@+id/distanceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/distanceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/map_info_text_color"
+                android:textSize="@dimen/value_18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/awayTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-5dp"
+                android:gravity="center_vertical"
+                android:text="@string/away_string"
+                android:textColor="@color/map_info_text_color"
+                android:textSize="@dimen/value_15sp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
+
+
+
+
+
+

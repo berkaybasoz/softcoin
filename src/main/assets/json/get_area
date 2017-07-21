@@ -1,0 +1,22 @@
+[
+  { "Entry": { "area": "Ataşehir" } },
+  { "Entry": { "area": "Kadıköy" } },
+  { "Entry": { "area": "Üsküdar" } },
+  { "Entry": { "area": "Bahçeşehir" } },
+  { "Entry": { "area": "Tuzla" } },
+  { "Entry": { "area": "Pendik" } },
+  { "Entry": { "area": "Beşiktaş" } },
+  { "Entry": { "area": "Taksim" } },
+  { "Entry": { "area": "Bakırköy" } },
+  { "Entry": { "area": "Başakşehir" } },
+  { "Entry": { "area": "Bayrampaşa" } },
+  { "Entry": { "area": "Beylikdüzü" } },
+  { "Entry": { "area": "Beyoğlu" } },
+  { "Entry": { "area": "Büyükçekmece" } },
+  { "Entry": { "area": "Çatalca" } },
+  { "Entry": { "area": "Esenler" } },
+  { "Entry": { "area": "Esenyurt" } },
+  { "Entry": { "area": "Eyüp" } },
+  { "Entry": { "area": "Fatih" } },
+  { "Entry": { "area": "Kağıthane" } }
+]

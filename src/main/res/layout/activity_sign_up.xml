@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_blur_wallpaper">
+
+    <ImageView
+        android:id="@+id/crossImgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="@dimen/value_20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_cross_blur" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.audacityit.finder.util.FloatLabel
+                android:id="@+id/etMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:hint="@string/hint_phone_number"
+                android:inputType="phone"
+                android:textColorHint="@color/hint_color_green" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:background="@color/bar_color" />
+
+            <com.audacityit.finder.util.FloatLabel
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:hint="@string/hint_full_name"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/hint_color_green" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:background="@color/bar_color" />
+
+            <com.audacityit.finder.util.FloatLabel
+                android:id="@+id/etFullEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/green_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:background="@color/bar_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:orientation="horizontal">
+
+                <com.audacityit.finder.util.FloatLabel
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_password"
+                    android:inputType="text"
+                    android:textColorHint="@color/hint_color_green" />
+
+                <ImageView
+                    android:id="@+id/showPasswordImg"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="@dimen/value_20dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_show_password" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:background="@color/bar_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:orientation="horizontal">
+
+                <com.audacityit.finder.util.FloatLabel
+                    android:id="@+id/etRetypePassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_retype_password"
+                    android:inputType="text"
+                    android:textColorHint="@color/hint_color_green" />
+
+                <ImageView
+                    android:id="@+id/showRetypePasswordImg"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="@dimen/value_20dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_show_password" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:background="@color/bar_color" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp"
+                android:divider="@drawable/transparent_divider"
+                android:orientation="horizontal"
+                android:showDividers="middle">
+
+                <RadioButton
+                    android:id="@+id/radioButtonMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_button"
+                    android:checked="true"
+                    android:text="@string/male"
+                    android:textColor="@color/hint_color_green"
+                    android:textSize="@dimen/value_18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_button"
+                    android:text="@string/female"
+                    android:textColor="@color/hint_color_green"
+                    android:textSize="@dimen/value_18sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/btnDeepSelection"
+                android:text="@string/sign_up_string"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:layout_marginLeft="@dimen/value_40dp"
+                android:layout_marginRight="@dimen/value_40dp" />
+
+            <TextView
+                android:id="@+id/btnHaveAccountTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:maxLines="2"
+                android:text="@string/have_account_string"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/value_15sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

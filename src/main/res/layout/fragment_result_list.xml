@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/result_list_background_color"
+    tools:context="com.audacityit.finder.fragment.ResultListFragment">
+
+    <ListView
+        android:id="@+id/resultListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/value_5dp"
+        android:divider="@color/result_list_background_color"
+        android:dividerHeight="5dp"
+        android:scrollbars="none" />
+
+</RelativeLayout>

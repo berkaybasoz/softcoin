@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.audacityit.finder.activity.HomeActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_menu_search"
+        android:orderInCategory="2"
+        android:title="Search"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_call"
+        android:icon="@drawable/ic_menu_call"
+        android:orderInCategory="2"
+        android:title="Call"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_menu_filter"
+        android:orderInCategory="2"
+        android:title="Filter"
+        app:showAsAction="always" />
+
+</menu>
