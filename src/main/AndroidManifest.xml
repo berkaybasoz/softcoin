@@ -118,7 +118,9 @@
         <activity
             android:name=".activity.MapActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ActivityOrderHistory" />
+        <activity android:name=".activity.ActivityOrderHistory" android:theme="@style/AppThemeAlt" />
+        <activity android:name=".activity.ActivityShoppingCart" android:theme="@style/AppThemeAlt" />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_map_v2_key" />

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.audacityit.finder.R;
 import com.audacityit.finder.activity.ActivityOrderHistory;
+import com.audacityit.finder.activity.ActivityShoppingCart;
 import com.audacityit.finder.activity.MapActivity;
 import com.audacityit.finder.adapter.ImagePagerAdapter;
 import com.audacityit.finder.adapter.ProductListAdapter;
@@ -71,6 +72,7 @@ import static com.audacityit.finder.util.Constants.JF_TITLE;
 import static com.audacityit.finder.util.Constants.JF_USER_RATING;
 import static com.audacityit.finder.util.Constants.JF_VERIFICATION;
 import static com.audacityit.finder.util.Constants.JF_PRICE;
+import static com.audacityit.finder.util.Constants.JF_SELLER_NAME;
 import static com.audacityit.finder.util.Constants.MSG_RATING_SUCCESSFUL;
 import static com.audacityit.finder.util.Constants.NO_DATA_FOUND;
 import static com.audacityit.finder.util.Constants.NULL_LOCATION;
@@ -481,6 +483,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                     item.setTitle(itemObject.getString(JF_TITLE));
                     item.setPrice(itemObject.getString(JF_PRICE));
                     item.setDescription(itemObject.optString(JF_DESCRIPTION, NO_DATA_FOUND));
+                    item.setSellerName(itemObject.optString(JF_SELLER_NAME, NO_DATA_FOUND));
                     item.setVerification(itemObject.optString(JF_VERIFICATION, NO_DATA_FOUND).equals("1") ? true : false);
                     JSONArray imageArray = companyObject.getJSONArray(JF_IMAGES);
                     String[] imageThumb = new String[imageArray.length()];
@@ -635,7 +638,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
     private int i = -1;
 
     @Override
-    public void onResultItemSelected(final Item itemDetails) {
+    public void onResultItemSelected(final Item item) {
         if (isUserSignedIn(getActivity())) {
             /*final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
                     .setTitleText("Loading");
@@ -679,7 +682,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
             }.start();*/
             new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("Satın Al?")
-                    .setContentText(itemDetails.getTitle() + " ürününü satın almak istiyor musunuz?")
+                    .setContentText(item.getTitle() + " ürününü satın almak istiyor musunuz?")
                     .setConfirmText("Evet!")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
@@ -687,7 +690,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                             // reuse previous dialog instance
 
                             sDialog.setTitleText("İşlem Başarılı!")
-                                    .setContentText(itemDetails.getTitle() + " ürünü satın aldınız!")
+                                    .setContentText(item.getTitle() + " ürünü satın aldınız!")
                                     .setConfirmText("Satın Aldıklarımı Gör")
                                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                         @Override
@@ -696,16 +699,27 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
 
                                             DatabaseHandler db = new DatabaseHandler(getContext());
 
-                                            Order order = new Order(++Order.TMP_ID, "200", "0");
+                                            /*Order order = new Order(++Order.TMP_ID,item.getSellerName()+" - "+ item.getTitle(), "0");
                                             Cart c=new Cart();
-                                            c.image=itemDetails.getImageThumbUrls()[0];
-                                            c.price_item=Float.parseFloat(itemDetails.getPrice());
+                                            c.image=item.getImageThumbUrls()[0];
+                                            c.price_item=Float.parseFloat(item.getPrice());
                                             c.order_id = order.id;
                                             order.cart_list.add(c);
 
                                             db.saveOrder(order);
 
                                             Intent i = new Intent(getContext(), ActivityOrderHistory.class);
+                                            startActivity(i);*/
+
+
+                                            Cart c = new Cart();
+                                            c.amount= ++Order.TMP_ID ;
+                                            c.image = item.getImageThumbUrls()[0];
+                                            c.price_item = Float.parseFloat(item.getPrice());
+                                            c.order_id =Long.parseLong(String.valueOf(++Order.TMP_ID)) ;
+                                            db.saveCart(c);
+
+                                            Intent i = new Intent(getContext(), ActivityShoppingCart.class);
                                             startActivity(i);
                                         }
                                     })

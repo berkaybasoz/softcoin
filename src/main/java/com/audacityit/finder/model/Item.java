@@ -40,6 +40,7 @@ public class Item {
     private String titleImg;
     private String adUrl;
     private String price;
+    private String sellerName;
     /**
      * @brief get title image of item
      * @return titleImg in String
@@ -541,5 +542,13 @@ public class Item {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 }

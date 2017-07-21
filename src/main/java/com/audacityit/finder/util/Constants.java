@@ -128,6 +128,7 @@ public class Constants {
     public static final String JF_HOT_LINE = "hotline";
     public static final String JF_TAG_LINE = "tag";
     public static final String JF_DESCRIPTION = "description";
+    public static final String JF_SELLER_NAME = "seller_name";
     public static final String JF_VERIFICATION = "apverification";
     public static final String JF_DISTRICT_INFO = "District";
     public static final String JF_DISTRICT_TITLE = "title";

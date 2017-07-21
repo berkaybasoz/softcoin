@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements Serializable {
-    public static Long TMP_ID = 1L;
+    public static int TMP_ID = 1 ;
     public Long id;
     public String code;
     public String total_fees;

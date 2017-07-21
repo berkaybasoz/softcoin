@@ -12,7 +12,7 @@ public class Cart {
     public Long stock = 0L;
     public float price_item;
     public Long created_at = 0L;
-
+    private String imageUrl;
     public Cart() {
     }
 
@@ -24,5 +24,13 @@ public class Cart {
         this.stock = stock;
         this.price_item = price_item;
         this.created_at = created_at;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
