@@ -8,6 +8,8 @@ package com.audacityit.finder.model;
 
 public class User {
 
+    private static User currentUser;
+
     private String id;
     private String phoneNumber;
     private String name;
@@ -21,81 +23,89 @@ public class User {
 
     }
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
+    }
+
     /**
-     * @brief get id of user
      * @return id in String
+     * @brief get id of user
      */
     public String getId() {
         return id;
     }
 
     /**
-     * @brief set id of user
      * @param id in String
+     * @brief set id of user
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * @brief get phone number of user
      * @return phoneNumber in String
+     * @brief get phone number of user
      */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
-     * @brief set phoneNumber of user
      * @param phoneNumber in String
+     * @brief set phoneNumber of user
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     /**
-     * @brief get name of user
      * @return name in String
+     * @brief get name of user
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @brief set name of user
      * @param name in String
+     * @brief set name of user
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @brief get email of user
      * @return email in String
+     * @brief get email of user
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * @brief set email of user
      * @param email in String
+     * @brief set email of user
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @brief get gender of user
      * @return gender in String
+     * @brief get gender of user
      */
     public String getGenderId() {
         return genderId;
     }
 
     /**
-     * @brief set gender of user
      * @param genderId in String
+     * @brief set gender of user
      */
     public void setGenderId(String genderId) {
         this.genderId = genderId;
