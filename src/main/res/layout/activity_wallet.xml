@@ -37,23 +37,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_view_image_gradient_layer_height"
-
+android:background="@android:color/white"
             android:orientation="horizontal"
             android:weightSum="3">
 
             <TextView
                 android:id="@+id/btnWeb"
-                style="@style/optionButton"
+                style="@style/optionButtonGreen"
                 android:text="Aktar" />
 
             <TextView
                 android:id="@+id/btnEmail"
-                style="@style/optionButton"
+                style="@style/optionButtonGreen"
                 android:text="Yükle" />
 
             <TextView
                 android:id="@+id/btnMap"
-                style="@style/optionButton"
+                style="@style/optionButtonGreen"
                 android:text="Hesaba Aktar" />
 
         </LinearLayout>

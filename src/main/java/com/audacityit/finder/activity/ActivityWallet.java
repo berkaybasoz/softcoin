@@ -59,6 +59,8 @@ public class ActivityWallet extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         price_total = (TextView) findViewById(R.id.price_total);
+        View btnWallet = (View) findViewById(R.id.btnWallet);
+        btnWallet.setVisibility(View.GONE);
     }
 
     private void initToolbar() {

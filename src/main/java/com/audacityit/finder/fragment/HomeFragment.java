@@ -169,6 +169,7 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
 
     private void showViews() {
         llBakiye.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+         
         //mFabButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
