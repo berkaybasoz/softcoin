@@ -9,7 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="welcome_string">Hoşgeldiniz</string>
     <string name="terms_condition_headings"><![CDATA[Şartlar ve Koşullar]]></string>
-    <string name="terms_condition_text">KABUL ETMEK İÇİN İŞARETLEYİN: İşbu sözleşme siz (KULLANICI) ve Tuzla Teknoloji ve Operasyon Merkezi, İçmeler Mah. Piri Reis Cad. No: 62 B Blok Zemin ve 1. Kat 34947 Tuzla - İSTANBUL adresinde yerleşik SoftCoin (FİRMA) arasındaki kullanım şart ve koşullarını içermektedir. Bu kutucuğu tıklamanız halinde bahse konu sözleşmede geçen şartları kabul etmiş sayılırsınız. Sözleşmey görüntülemek için :www.softcoin.com.tr/sozlesme</string><string name="tc_accept"><u>I accept the terms and condition</u></string>
+    <string name="terms_condition_text">KABUL ETMEK İÇİN İŞARETLEYİN: İşbu sözleşme siz (KULLANICI) ve Tuzla Teknoloji ve Operasyon Merkezi, İçmeler Mah. Piri Reis Cad. No: 62 B Blok Zemin ve 1. Kat 34947 Tuzla - İSTANBUL adresinde yerleşik SoftCoin (FİRMA) arasındaki kullanım şart ve koşullarını içermektedir. Bu kutucuğu tıklamanız halinde bahse konu sözleşmede geçen şartları kabul etmiş sayılırsınız. Sözleşmey görüntülemek için :www.softcoin.com.tr/sozlesme</string><string name="tc_accept"><u>Şart ve Koşulları kabul ediyorum.</u></string>
     <string name="continue_string">Devam Et</string>
     <string name="promo_text">2017 Softtech Bir Hackathon Macerası</string>
     <string name="sign_up_string">Kayıt Ol</string>
@@ -71,9 +71,9 @@
     <string name="no_internet">No Internet</string>
     <string name="no_internet_text"><![CDATA[Please check your internet connection & try again]]></string>
     <string name="retry_string">Retry</string>
-    <string name="exit_string">Exit</string>
+    <string name="exit_string">Çıkış</string>
     <string name="exit_heading">Çıkış</string>
-    <string name="exit_text">Do you want to log out?</string>
+    <string name="exit_text">Çıkış yapmak istiyor musunuz?</string>
     <string name="cancel_string">İptal</string>
     <string name="sign_in_text">Bu özellik için kayıt olmalısınız!</string>
     <string name="location_not_found">Location unavailable</string>

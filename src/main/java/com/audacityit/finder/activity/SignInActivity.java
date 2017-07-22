@@ -135,8 +135,8 @@ public class SignInActivity extends Activity implements View.OnClickListener, Vi
         User user = new User();
         user.setId("1"); //dummy
         user.setPhoneNumber(mobileNumber);
-        user.setName("User"); // dummy value
-        user.setEmail("user@email.com");
+        user.setName("Aytekin"); // dummy value
+        user.setEmail("aytekin.ulas@softtech.com.tr");
         savePreference(SignInActivity.this, JF_ID, user.getId());
         savePreference(SignInActivity.this, JF_CONTACT_NUMBER, user.getPhoneNumber());
         savePreference(SignInActivity.this, JF_NAME, user.getName());
@@ -172,7 +172,7 @@ public class SignInActivity extends Activity implements View.OnClickListener, Vi
 
     private boolean isInputValid() {
 
-        if (!isInputted(this, etMobileNumber)) {
+        /*if (!isInputted(this, etMobileNumber)) {
             return false;
         }
 
@@ -186,7 +186,7 @@ public class SignInActivity extends Activity implements View.OnClickListener, Vi
 
         if (!isPasswordValid(this, etPassword)) {
             return false;
-        }
+        }*/
 
         return true;
     }
