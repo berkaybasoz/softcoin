@@ -56,7 +56,7 @@
             android:layout_gravity="center|right"
 
             android:gravity="center"
-            android:text="330 Coin"
+            android:text="330 SCoin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/value_25sp" />

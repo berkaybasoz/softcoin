@@ -43,7 +43,7 @@ public class ImagePagerAdapter extends PagerAdapter {
         View itemView = inflater.inflate(R.layout.layout_detail_image, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.image);
         // load real image using the url coming from server
-//        Picasso.with(mContext).load(imageUrls[position]).placeholder(R.drawable.ic_placeholder).into(imageView);
+//        Picasso.with(mContext).load(imageUrls[position]).placeholder(R.drawable.ic_placeholder).into(ivQRCode);
         Picasso.with(mContext).load(getDrawableFromFileName(mContext, imageUrls[position])).
                 placeholder(R.drawable.ic_placeholder).into(imageView);
         container.addView(itemView);
