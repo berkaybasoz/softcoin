@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import com.audacityit.finder.R;
 import com.audacityit.finder.adapter.AdapterShoppingCart;
+import com.audacityit.finder.dialog.DialogTransfer;
 import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.SharedPref;
 import com.audacityit.finder.util.Constants;
@@ -177,9 +178,13 @@ public class ActivityWallet extends AppCompatActivity {
         ((Button) dialog.findViewById(R.id.bt_save)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.saveCart(model);
-                displayData();
+                //db.saveCart(model);
+                //displayData();
                 dialog.dismiss();
+
+                DialogTransfer dialogTransfer=new DialogTransfer(ActivityWallet.this);
+                dialogTransfer.show();
+
             }
         });
         ((Button) dialog.findViewById(R.id.bt_remove)).setOnClickListener(new View.OnClickListener() {

@@ -326,4 +326,10 @@
     <string name="NEXT">NEXT</string>
     <string name="SKIP">SKIP</string>
     <string name="USE">KULLAN</string>
+
+    <string name="dummy_from">\@Aytekin</string>
+    <string name="dummy_to">\@Berkay</string>
+    <string name="Transfer">Gönder</string>
+    <string name="TransferSuccess">Başarıyla Gönderildi</string>
+    <string name="TransferLoading">Gönderme Başarısız</string>
 </resources>
