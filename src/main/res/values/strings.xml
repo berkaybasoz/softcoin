@@ -331,4 +331,5 @@
     <string name="Transfer">Gönder</string>
     <string name="TransferSuccess">Gönderildi</string>
     <string name="TransferLoading">Gönderiliyor</string>
+    <string name="TransferError">Başarısız</string>
 </resources>
