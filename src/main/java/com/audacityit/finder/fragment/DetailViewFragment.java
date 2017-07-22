@@ -698,7 +698,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                                         @Override
                                         public void onClick(SweetAlertDialog sweetAlertDialog) {
 
-
+                                            sDialog.dismiss();
                                             DatabaseHandler db = new DatabaseHandler(getContext());
 
                                             /*Order order = new Order(++Order.TMP_ID,item.getSellerName()+" - "+ item.getTitle(), "0");
