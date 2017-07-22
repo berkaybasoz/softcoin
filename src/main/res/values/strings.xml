@@ -182,7 +182,7 @@
     <string name="before_tax">( Vergisiz )</string>
     <string name="total">Toplam&#160;</string>
     <string name="stock">Kalan : &#160;</string>
-    <string name="QUANTITY">QUANTITY</string>
+    <string name="QUANTITY">ADET</string>
     <string name="items">Adet</string>
     <string name="title_menu_checkout">Checkout</string>
 
@@ -325,4 +325,5 @@
     <string name="SAVE">SAVE</string>
     <string name="NEXT">NEXT</string>
     <string name="SKIP">SKIP</string>
+    <string name="USE">KULLAN</string>
 </resources>
