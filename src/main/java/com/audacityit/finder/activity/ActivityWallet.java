@@ -82,10 +82,11 @@ public class ActivityWallet extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*int item_id = item.getItemId();*
+        int item_id = item.getItemId();
         if (item_id == android.R.id.home) {
             super.onBackPressed();
-        } else if (item_id == R.id.action_checkout) {
+        }
+        /*else if (item_id == R.id.action_checkout) {
             if (adapter.getItemCount() > 0) {
                 Intent intent = new Intent(ActivityWallet.this, ActivityCheckout.class);
                 startActivity(intent);
@@ -144,9 +145,9 @@ public class ActivityWallet extends AppCompatActivity {
         _price_total_tax_str = String.format(Locale.US, "%1$,.2f", _price_total);
         price_total.setText(" " + _price_total_tax_str + " " + Constants.COIN);
     }
-
+    Integer usingAmount = 1;
     private void dialogCartAction(final Cart model) {
-
+        usingAmount = 1;
         final Dialog dialog = new Dialog(ActivityWallet.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_cart_option);
@@ -156,33 +157,36 @@ public class ActivityWallet extends AppCompatActivity {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         ((TextView) dialog.findViewById(R.id.title)).setText(model.product_name);
-        ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + model.stock);
+        ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
         final TextView qty = (TextView) dialog.findViewById(R.id.quantity);
-        qty.setText(model.amount + "");
+        qty.setText( usingAmount + "");
 
         ((ImageView) dialog.findViewById(R.id.img_decrease)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (model.amount > 1) {
-                    model.amount = model.amount - 1;
-                    qty.setText(model.amount + "");
+                if (usingAmount > 1) {
+                    usingAmount -= 1;
+                    qty.setText(usingAmount + "");
+                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
                 }
             }
         });
         ((ImageView) dialog.findViewById(R.id.img_increase)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (model.amount < model.stock) {
-                    model.amount = model.amount + 1;
-                    qty.setText(model.amount + "");
+                if (usingAmount < model.amount ) {
+                    usingAmount += 1;
+                    qty.setText(usingAmount + "");
+                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
                 }
             }
         });
         ((Button) dialog.findViewById(R.id.bt_save)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //db.saveCart(model);
-                //displayData();
+                model.amount -= usingAmount;
+                db.saveCart(model);
+                displayData();
                 dialog.dismiss();
 
                 DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForQuantity(ActivityWallet.this,model.sellerUsername, User.getCurrentUser().getUserName(),Integer.valueOf(qty.getText().toString()));
@@ -193,14 +197,15 @@ public class ActivityWallet extends AppCompatActivity {
         ((Button) dialog.findViewById(R.id.bt_remove)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deleteActiveCart(model.product_id);
-                displayData();
+                //db.deleteActiveCart(model.product_id);
+                //displayData();
                 dialog.dismiss();
             }
         });
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
 
     public void dialogDeleteConfirmation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
