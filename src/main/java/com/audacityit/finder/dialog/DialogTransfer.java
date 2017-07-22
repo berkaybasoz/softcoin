@@ -3,6 +3,7 @@ package com.audacityit.finder.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.audacityit.finder.R;
+import com.audacityit.finder.activity.ActivityWallet;
 import com.audacityit.finder.util.ProgressGenerator;
 import com.dd.processbutton.iml.ActionProcessButton;
 
@@ -22,6 +24,12 @@ public class DialogTransfer extends Dialog implements
     public ActionProcessButton btnSend;
     public EditText etFrom, etTo;
     public ProgressGenerator progressGenerator;
+
+
+    public static DialogTransfer createNewDialog(Activity a) {
+        DialogTransfer dialogTransfer = new DialogTransfer(a);
+        return dialogTransfer;
+    }
 
     public DialogTransfer(Activity a) {
         super(a);
@@ -60,16 +68,17 @@ public class DialogTransfer extends Dialog implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSend:
+
                 progressGenerator.start(btnSend);
                 btnSend.setEnabled(false);
                 etFrom.setEnabled(false);
                 etTo.setEnabled(false);
+
                 //closeDialog();
                 break;
             default:
                 break;
         }
-        dismiss();
     }
 
     private void closeDialog() {
@@ -77,7 +86,8 @@ public class DialogTransfer extends Dialog implements
             @Override
             public void run() {
                 try {
-                    DialogTransfer.this.hide();
+                    Thread.sleep(1000);
+                    DialogTransfer.this.dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

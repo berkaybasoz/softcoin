@@ -182,7 +182,7 @@ public class ActivityWallet extends AppCompatActivity {
                 //displayData();
                 dialog.dismiss();
 
-                DialogTransfer dialogTransfer=new DialogTransfer(ActivityWallet.this);
+                DialogTransfer dialogTransfer=DialogTransfer.createNewDialog(ActivityWallet.this);
                 dialogTransfer.show();
 
             }

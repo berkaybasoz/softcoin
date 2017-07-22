@@ -330,6 +330,6 @@
     <string name="dummy_from">\@Aytekin</string>
     <string name="dummy_to">\@Berkay</string>
     <string name="Transfer">Gönder</string>
-    <string name="TransferSuccess">Başarıyla Gönderildi</string>
-    <string name="TransferLoading">Gönderme Başarısız</string>
+    <string name="TransferSuccess">Gönderildi</string>
+    <string name="TransferLoading">Başarısız</string>
 </resources>
