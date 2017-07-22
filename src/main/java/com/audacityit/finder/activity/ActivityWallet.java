@@ -1,5 +1,6 @@
 package com.audacityit.finder.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -52,6 +53,15 @@ public class ActivityWallet extends AppCompatActivity {
 
         initToolbar();
         iniComponent();
+
+
+        final TextView aktarButton = (TextView) findViewById(R.id.btnWeb);
+        aktarButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForCoin(ActivityWallet.this, User.getCurrentUser().getUserName(),"",0);
+                dialogTransfer.show();
+            }
+        });
     }
 
     private void iniComponent() {
