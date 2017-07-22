@@ -60,7 +60,7 @@ public class SignInActivity extends Activity implements View.OnClickListener, Vi
         etPassword = (FloatLabel) findViewById(R.id.etPassword);
         etPassword.getEditText().setTransformationMethod(new PasswordTransformationMethod());
         etMobileNumber.getEditText().setOnFocusChangeListener(setPhoneCodeListener(this));
-        etMobileNumber.getEditText().setOnKeyListener(new View.OnKeyListener() {
+       /* etMobileNumber.getEditText().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
@@ -72,7 +72,7 @@ public class SignInActivity extends Activity implements View.OnClickListener, Vi
                 return false;
             }
         });
-
+*/
     }
 
     @Override
