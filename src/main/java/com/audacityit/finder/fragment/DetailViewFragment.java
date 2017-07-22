@@ -714,16 +714,24 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                                             Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
                                             Long stock = orderId;
                                             int amount = 1;
-                                            Cart c = new Cart(Long.parseLong(item.getId()),
-                                                    item.getSellerName() + " - " + item.getTitle(),
-                                                    item.getImageThumbUrls()[0],
-                                                    amount,
-                                                    stock,
-                                                    Float.parseFloat(item.getPrice()),
-                                                    System.currentTimeMillis(),
-                                                    Integer.parseInt(item.getTotalQuantity()),
-                                                    Integer.parseInt(item.getLeavesQuantity()));
-                                            db.saveCart(c);
+                                            Cart exist = db.getCart(Long.parseLong(item.getId()));
+
+                                            if (exist.id > 0) {
+                                                exist.amount += amount;
+                                                db.updateCart(exist);
+                                            } else {
+                                                Cart c = new Cart(Long.parseLong(item.getId()),
+                                                        item.getSellerName() + " - " + item.getTitle(),
+                                                        item.getImageThumbUrls()[0],
+                                                        amount,
+                                                        stock,
+                                                        Float.parseFloat(item.getPrice()),
+                                                        System.currentTimeMillis(),
+                                                        Integer.parseInt(item.getTotalQuantity()),
+                                                        Integer.parseInt(item.getLeavesQuantity()));
+                                                db.saveCart(c);
+                                            }
+
 
                                             Intent i = new Intent(getContext(), ActivityWallet.class);
                                             startActivity(i);

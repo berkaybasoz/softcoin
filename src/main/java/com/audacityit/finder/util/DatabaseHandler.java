@@ -178,6 +178,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insertWithOnConflict(TABLE_CART, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
+    public void updateCart(Cart cart){
+        ContentValues values = getCartValue(cart);
+        String [] parameters = new String[1];
+        parameters[0] = (String)values.get(COL_CART_ID);
+        db.updateWithOnConflict(TABLE_CART,values,"COL_CART_ID = ?",parameters,SQLiteDatabase.CONFLICT_REPLACE);
+    }
 
 
     private ContentValues getWishlistValue(Wishlist model) {
