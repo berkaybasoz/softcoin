@@ -12,11 +12,13 @@ public class Cart {
     public Long stock = 0L;
     public float price_item;
     public Long created_at = 0L;
-    private String imageUrl;
+    public int totalQuantity;
+    public int leavesQuantity;
+
     public Cart() {
     }
 
-    public Cart(Long product_id, String product_name, String image, Integer amount, Long stock, float price_item, Long created_at) {
+    public Cart(Long product_id, String product_name, String image, Integer amount, Long stock, float price_item, Long created_at,int totalQuantity,int leavesQuantity) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.image = image;
@@ -24,13 +26,10 @@ public class Cart {
         this.stock = stock;
         this.price_item = price_item;
         this.created_at = created_at;
+        this.totalQuantity=totalQuantity;
+        this.leavesQuantity=leavesQuantity;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+
 }

@@ -97,7 +97,8 @@ public class Constants {
     public static final String JF_NAME = "name";
     public static final String JF_TITLE = "title";
     public static final String JF_PRICE = "price";
-    public static final String JF_TOTAL_QUANTITY = "price";
+    public static final String JF_TOTAL_QUANTITY = "total_quantity";
+    public static final String JF_LEAVES_QUANTITY = "leaves_quantity";
     public static final String JF_ADDRESS = "address";
     public static final String JF_ROOT_ID = "root_id";
     public static final String JF_IMAGE = "image";

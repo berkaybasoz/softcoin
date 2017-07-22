@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerF
         HomeFragment.CategorySelectionCallbacks,
         SubCategoryFragment.SubCategorySelectionCallbacks,
         ResultListFragment.ResultListCallbacks,
-        SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
+        SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
     public static int selectedDistrictId = 1;
     public static String selectedArea = "All Area";
@@ -95,6 +95,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerF
     private Spinner spinnerArea;
     private TextView buttonApply;
     private ListView suggestionListView;
+    private View btnWallet;
+    private View btnTezgah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerF
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+        btnWallet = (View) findViewById(R.id.btnWallet);
+        btnTezgah = (View) findViewById(R.id.btnTezgah);
+        btnWallet.setOnClickListener(this);
+        btnTezgah.setOnClickListener(this);
+
         mSearchView = (SearchView) findViewById(R.id.searchView);
         mSearchView.setSearchableInfo(searchableInfo);
         mSearchView.setOnQueryTextListener(this);
@@ -654,4 +661,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerF
         return super.dispatchTouchEvent(ev);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnWallet) {
+            Intent i = new Intent(this, ActivityWallet.class);
+            startActivity(i);
+        } else if (v.getId() == R.id.btnTezgah) {
+
+        }
+    }
 }

@@ -10,10 +10,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+
+        <FrameLayout android:layout_below="@+id/btnWalletContainer"
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <LinearLayout android:id="@+id/btnWalletContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true" >
+
+
+            <TextView
+                android:id="@+id/btnWallet"
+                style="@style/btnDeepSelectionSqrLeft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CÜZDAN" />
+
+
+            <TextView
+                android:id="@+id/btnTezgah"
+                style="@style/btnDeepSelectionSqrRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TEZGAH" />
+
+
+        </LinearLayout>
 
         <SearchView
             android:id="@+id/searchView"
@@ -54,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true" />
 
+
     </RelativeLayout>
 
 
@@ -65,5 +94,4 @@
         android:layout_gravity="start"
         android:layout_marginLeft="@dimen/value_30dp"
         tools:layout="@layout/fragment_navigation_drawer" />
-
 </android.support.v4.widget.DrawerLayout>

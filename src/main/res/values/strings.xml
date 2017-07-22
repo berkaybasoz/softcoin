@@ -177,7 +177,7 @@
     <string name="msg_wishlist_empty">Wishlist is empty</string>
     <string name="title_menu_wishlist">Wishlist</string>
 
-    <!--All data for ActivityShoppingCart.java -->
+    <!--All data for ActivityWallet.java -->
     <string name="msg_cart_empty">Shopping Cart is empty</string>
     <string name="before_tax">( Vergisiz )</string>
     <string name="total">Toplam&#160;</string>

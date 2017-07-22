@@ -136,7 +136,30 @@
         <item name="android:textColor">@color/text_color_1</item>
         <item name="android:textSize">@dimen/value_16sp</item>
     </style>
-
+    <style name="btnDeepSelectionSqrLeft" parent="@android:style/Widget.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/btn_bg_deep_selection_sqr_left</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">@dimen/value_10dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+        <item name="android:textSize">@dimen/value_16sp</item>
+    </style>
+    <style name="btnDeepSelectionSqrRight" parent="@android:style/Widget.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/btn_bg_deep_selection_sqr_right</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">@dimen/value_10dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+        <item name="android:textSize">@dimen/value_16sp</item>
+    </style>
     <!--
         @brief button style for 'Rate Now' Button used in fragment_detail_view.xml
     -->

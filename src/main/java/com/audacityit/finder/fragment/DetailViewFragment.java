@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -24,18 +23,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.audacityit.finder.R;
-import com.audacityit.finder.activity.ActivityOrderHistory;
-import com.audacityit.finder.activity.ActivityShoppingCart;
+import com.audacityit.finder.activity.ActivityWallet;
 import com.audacityit.finder.activity.MapActivity;
 import com.audacityit.finder.adapter.ImagePagerAdapter;
 import com.audacityit.finder.adapter.ProductListAdapter;
-import com.audacityit.finder.adapter.ResultListAdapter;
 import com.audacityit.finder.callback.ProductListCallbacks;
 import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.Comment;
 import com.audacityit.finder.model.Item;
 import com.audacityit.finder.model.Order;
-import com.audacityit.finder.model.Product;
 import com.audacityit.finder.util.CustomRatingBar;
 import com.audacityit.finder.util.DatabaseHandler;
 import com.audacityit.finder.util.ExpandableTextView;
@@ -64,6 +60,7 @@ import static com.audacityit.finder.util.Constants.JF_ENTRY;
 import static com.audacityit.finder.util.Constants.JF_ID;
 import static com.audacityit.finder.util.Constants.JF_IMAGES;
 import static com.audacityit.finder.util.Constants.JF_ITEM_TYPE;
+import static com.audacityit.finder.util.Constants.JF_LEAVES_QUANTITY;
 import static com.audacityit.finder.util.Constants.JF_NAME;
 import static com.audacityit.finder.util.Constants.JF_PRODUCT_LIST;
 import static com.audacityit.finder.util.Constants.JF_RATING_ARRAY;
@@ -484,6 +481,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                     item.setTitle(itemObject.getString(JF_TITLE));
                     item.setPrice(itemObject.getString(JF_PRICE));
                     item.setTotalQuantity(itemObject.getString(JF_TOTAL_QUANTITY));
+                    item.setLeavesQuantity(itemObject.getString(JF_LEAVES_QUANTITY));
                     item.setDescription(itemObject.optString(JF_DESCRIPTION, NO_DATA_FOUND));
                     item.setSellerName(itemObject.optString(JF_SELLER_NAME, NO_DATA_FOUND));
                     item.setVerification(itemObject.optString(JF_VERIFICATION, NO_DATA_FOUND).equals("1") ? true : false);
@@ -715,17 +713,19 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
 
                                             Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
                                             Long stock = orderId;
-                                            int amount=1;
+                                            int amount = 1;
                                             Cart c = new Cart(Long.parseLong(item.getId()),
                                                     item.getSellerName() + " - " + item.getTitle(),
                                                     item.getImageThumbUrls()[0],
                                                     amount,
                                                     stock,
                                                     Float.parseFloat(item.getPrice()),
-                                                    System.currentTimeMillis());
+                                                    System.currentTimeMillis(),
+                                                    Integer.parseInt(item.getTotalQuantity()),
+                                                    Integer.parseInt(item.getLeavesQuantity()));
                                             db.saveCart(c);
 
-                                            Intent i = new Intent(getContext(), ActivityShoppingCart.class);
+                                            Intent i = new Intent(getContext(), ActivityWallet.class);
                                             startActivity(i);
 
                                         }
