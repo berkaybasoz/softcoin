@@ -23,22 +23,6 @@
             android:layout_alignParentTop="true" >
 
 
-            <TextView
-                android:id="@+id/btnWallet"
-                style="@style/btnDeepSelectionSqrLeft"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="CÜZDAN" />
-
-
-            <TextView
-                android:id="@+id/btnTezgah"
-                style="@style/btnDeepSelectionSqrRight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TEZGAH" />
 
 
         </LinearLayout>

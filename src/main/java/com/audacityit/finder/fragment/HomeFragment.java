@@ -1,21 +1,30 @@
 package com.audacityit.finder.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.AbsListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.audacityit.finder.R;
+import com.audacityit.finder.activity.ActivityWallet;
 import com.audacityit.finder.activity.HomeActivity;
 import com.audacityit.finder.adapter.CategoryAdapter;
 import com.audacityit.finder.model.Category;
 import com.audacityit.finder.util.ApiHandler;
+import com.audacityit.finder.util.ListViewScrollListener;
 import com.audacityit.finder.util.UtilMethods;
 import com.audacityit.finder.util.UtilMethods.InternetConnectionListener;
+import com.google.android.gms.vision.text.Text;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,14 +44,16 @@ import static com.audacityit.finder.util.UtilMethods.showNoInternetDialog;
  * @brief Fragment for showing the category list
  */
 
-public class HomeFragment extends Fragment implements InternetConnectionListener, ApiHandler.ApiHandlerListener {
+public class HomeFragment extends Fragment implements InternetConnectionListener, ApiHandler.ApiHandlerListener, View.OnClickListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private final int CATEGORY_ACTION = 1;
     private CategorySelectionCallbacks mCallbacks;
     private ArrayList<Category> categoryList;
     private ListView categoryListView;
+    private LinearLayout llBakiye;
     private InternetConnectionListener internetConnectionListener;
+    private View btnWallet;
 
     public HomeFragment() {
 
@@ -72,6 +83,10 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         categoryListView = (ListView) rootView.findViewById(R.id.categoryListView);
+
+        llBakiye = (LinearLayout) rootView.findViewById(R.id.llBakiye);
+        btnWallet = (View) llBakiye.findViewById(R.id.btnWallet);
+        btnWallet.setOnClickListener(this);
         return rootView;
     }
 
@@ -125,12 +140,36 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
                 @Override
                 public void run() {
                     categoryListView.setAdapter(new CategoryAdapter(getActivity(), mCallbacks, categoryList));
+                    categoryListView.setOnScrollListener(new ListViewScrollListener() {
+                        @Override
+                        public void onScrollUp() {
+                            showViews();
+                        }
+
+                        @Override
+                        public void onScrollDown() {
+                            hideViews();
+                        }
+                    });
                 }
             });
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void hideViews() {
+        llBakiye.animate().translationY(-llBakiye.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+
+        //LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) llBakiye.getLayoutParams();
+        //int fabBottomMargin = lp.bottomMargin;
+        //mFabButton.animate().translationY(mFabButton.getHeight()+fabBottomMargin).setInterpolator(new AccelerateInterpolator(2)).start();
+    }
+
+    private void showViews() {
+        llBakiye.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+        //mFabButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
     @Override
@@ -157,6 +196,14 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
     @Override
     public void onFailureResponse(String tag) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnWallet) {
+            Intent i = new Intent(getContext(), ActivityWallet.class);
+            startActivity(i);
+        }
     }
 
     //! callback interface listen by HomeActivity to detect user click on category

@@ -26,6 +26,8 @@
     <dimen name="result_list_item_height">110dp</dimen>
     <dimen name="result_list_image_width">90dp</dimen>
     <dimen name="result_list_image_height">100dp</dimen>
+    <dimen name="result_list_image_width_medium">70dp</dimen>
+    <dimen name="result_list_image_height_medium">80dp</dimen>
     <dimen name="nav_list_height">60dp</dimen>
     <dimen name="search_filter_width">240dp</dimen>
     <dimen name="detail_view_image_parent_height">300dp</dimen>

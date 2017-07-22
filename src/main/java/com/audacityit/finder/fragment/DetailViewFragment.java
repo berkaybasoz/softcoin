@@ -712,25 +712,36 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
 
                                             Intent i = new Intent(getContext(), ActivityOrderHistory.class);
                                             startActivity(i);*/
+                                            try {
+                                                Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
+                                                Long stock = orderId;
+                                                int amount = Integer.parseInt(item.getTotalQuantity());
+                                                Cart exist = db.getCart(Long.parseLong(item.getId()));
 
-                                            Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
-                                            Long stock = orderId;
-                                            int amount = 1;
-                                            Cart c = new Cart(Long.parseLong(item.getId()),
-                                                    item.getSellerUserName(),
-                                                    item.getSellerName(),
-                                                    item.getSellerName() + " - " + item.getTitle(),
-                                                    item.getImageThumbUrls()[0],
-                                                    amount,
-                                                    stock,
-                                                    Float.parseFloat(item.getPrice()),
-                                                    System.currentTimeMillis(),
-                                                    Integer.parseInt(item.getTotalQuantity()),
-                                                    Integer.parseInt(item.getLeavesQuantity()));
-                                            db.saveCart(c);
+                                                if (exist != null && exist.id > 0) {
+                                                    exist.amount += amount;
+                                                    db.updateCart(exist);
+                                                } else {
+                                                    exist = new Cart(Long.parseLong(item.getId()),
+                                                            item.getSellerUserName(),
+                                                            item.getSellerName(),
+                                                            item.getSellerName() + " - " + item.getTitle(),
+                                                            item.getImageThumbUrls()[0],
+                                                            amount,
+                                                            stock,
+                                                            Float.parseFloat(item.getPrice()),
+                                                            System.currentTimeMillis(),
+                                                            Integer.parseInt(item.getTotalQuantity()),
+                                                            Integer.parseInt(item.getLeavesQuantity()));
+                                                    db.saveCart(exist);
+                                                }
 
-                                            Intent i = new Intent(getContext(), ActivityWallet.class);
-                                            startActivity(i);
+
+                                                Intent i = new Intent(getContext(), ActivityWallet.class);
+                                                startActivity(i);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
 
                                         }
                                     })

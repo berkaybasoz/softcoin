@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/llBakiye"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_10"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_large">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/itemIconImgView"
+        android:layout_width="@dimen/result_list_image_width_medium"
+        android:layout_height="@dimen/result_list_image_height_medium"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/value_5dp"
+        android:src="@drawable/aytekin"
+        app:civ_border_color="@color/gray_color"
+        app:civ_border_width="2dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aytekin Ulaş"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\@Aytekin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/text_color" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+           android:layout_weight="1"
+        android:layout_height="wrap_content" android:layout_width="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/price_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+
+            android:gravity="center"
+            android:text="330 Coin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/value_25sp" />
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnWallet"
+            style="@style/optionButtonGreen"
+            android:text="Cüzdanım" />
+    </LinearLayout>
+
+</LinearLayout>

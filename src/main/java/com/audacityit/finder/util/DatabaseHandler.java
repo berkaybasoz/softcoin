@@ -161,7 +161,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-
     public void saveWishlist(Wishlist wishlist) {
         ContentValues values = getWishlistValue(wishlist);
         // Inserting or Update Row
@@ -183,6 +182,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insertWithOnConflict(TABLE_CART, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
+    public void updateCart(Cart cart) {
+        ContentValues values = getCartValue(cart);
+        String[] parameters = new String[1];
+        parameters[0] = String.valueOf(values.get(COL_CART_ID));
+        db.updateWithOnConflict(TABLE_CART, values, "COL_CART_ID = ?", parameters, SQLiteDatabase.CONFLICT_REPLACE);
+    }
 
 
     private ContentValues getWishlistValue(Wishlist model) {
@@ -254,7 +259,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-
     private Wishlist getWishlistByCursor(Cursor cur) {
         Wishlist obj = new Wishlist();
         obj.product_id = cur.getLong(cur.getColumnIndex(COL_WISH_PRODUCT_ID));
@@ -289,7 +293,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         obj.sellerUsername = cur.getString(cur.getColumnIndex(COL_CART_SELLER_USERNAME));
         return obj;
     }
-
 
 
     public List<Wishlist> getWishlistByPage(int limit, int offset) {
@@ -335,7 +338,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return items;
     }
-
 
 
     private List<Wishlist> getListWishlistByCursor(Cursor cur) {

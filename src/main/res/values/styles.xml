@@ -67,6 +67,21 @@
         <item name="android:textSize">@dimen/value_13sp</item>
     </style>
 
+    <style name="optionButtonGreen" parent="@android:style/Widget.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/btn_bg_option_green</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:padding">@dimen/value_5dp</item>
+        <item name="android:layout_marginLeft">@dimen/value_10dp</item>
+        <item name="android:layout_marginRight">@dimen/value_10dp</item>
+        <item name="android:textColor">@color/green_color</item>
+        <item name="android:textSize">@dimen/value_13sp</item>
+    </style>
+
     <declare-styleable name="ratingBar">
         <attr name="maxStars" format="integer" />
         <attr name="stars" format="float" />

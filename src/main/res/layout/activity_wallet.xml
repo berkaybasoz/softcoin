@@ -14,6 +14,60 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tvHesabım"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/value_10dp"
+        android:text="BAKİYEM"
+        android:textColor="@color/green_color"
+        android:textSize="@dimen/value_18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_layer_white"
+
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/include_bakiyem" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_view_image_gradient_layer_height"
+
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/btnWeb"
+                style="@style/optionButton"
+                android:text="Aktar" />
+
+            <TextView
+                android:id="@+id/btnEmail"
+                style="@style/optionButton"
+                android:text="Yükle" />
+
+            <TextView
+                android:id="@+id/btnMap"
+                style="@style/optionButton"
+                android:text="Hesaba Aktar" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvVarliklarim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/value_10dp"
+        android:text="VARLIKLARIM"
+        android:textColor="@color/green_color"
+        android:textSize="@dimen/value_18sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,39 +88,5 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grey_10"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_large">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/total"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/grey_80"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" android:visibility="invisible"
-            android:text="@string/before_tax"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/grey_60"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/price_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="500 SCoin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 </LinearLayout>
