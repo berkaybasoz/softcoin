@@ -43,6 +43,7 @@ public class Item {
     private String sellerName;
     private String totalQuantity;
     private String leavesQuantity;
+    private String sellerUserName;
     /**
      * @brief get title image of item
      * @return titleImg in String
@@ -568,5 +569,13 @@ public class Item {
 
     public void setLeavesQuantity(String leavesQuantity) {
         this.leavesQuantity = leavesQuantity;
+    }
+
+    public String getSellerUserName() {
+        return sellerUserName;
+    }
+
+    public void setSellerUserName(String sellerUserName) {
+        this.sellerUserName = sellerUserName;
     }
 }

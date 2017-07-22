@@ -71,6 +71,7 @@ import static com.audacityit.finder.util.Constants.JF_VERIFICATION;
 import static com.audacityit.finder.util.Constants.JF_PRICE;
 import static com.audacityit.finder.util.Constants.JF_TOTAL_QUANTITY;
 import static com.audacityit.finder.util.Constants.JF_SELLER_NAME;
+import static com.audacityit.finder.util.Constants.JF_SELLER_USER_NAME;
 import static com.audacityit.finder.util.Constants.MSG_RATING_SUCCESSFUL;
 import static com.audacityit.finder.util.Constants.NO_DATA_FOUND;
 import static com.audacityit.finder.util.Constants.NULL_LOCATION;
@@ -484,6 +485,7 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                     item.setLeavesQuantity(itemObject.getString(JF_LEAVES_QUANTITY));
                     item.setDescription(itemObject.optString(JF_DESCRIPTION, NO_DATA_FOUND));
                     item.setSellerName(itemObject.optString(JF_SELLER_NAME, NO_DATA_FOUND));
+                    item.setSellerUserName(itemObject.optString(JF_SELLER_USER_NAME, NO_DATA_FOUND));
                     item.setVerification(itemObject.optString(JF_VERIFICATION, NO_DATA_FOUND).equals("1") ? true : false);
                     JSONArray imageArray = companyObject.getJSONArray(JF_IMAGES);
                     String[] imageThumb = new String[imageArray.length()];
@@ -715,6 +717,8 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                                             Long stock = orderId;
                                             int amount = 1;
                                             Cart c = new Cart(Long.parseLong(item.getId()),
+                                                    item.getSellerUserName(),
+                                                    item.getSellerName(),
                                                     item.getSellerName() + " - " + item.getTitle(),
                                                     item.getImageThumbUrls()[0],
                                                     amount,

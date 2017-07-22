@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="32dp"
@@ -15,32 +16,49 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <EditText
-            android:id="@+id/etFrom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/green_color_2"
-            android:inputType="textAutoComplete"
-            android:text="@string/dummy_from" />
 
-        <EditText
-            android:id="@+id/etTo"
-            android:textColor="@color/green_color_2"
+        <ImageView android:id="@+id/qrCode"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+        <!-- add some padding -->
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:inputType="textAutoComplete"
-            android:text="@string/dummy_to" />
+            float:fletPadding="10dp">
 
-        <EditText
-            android:id="@+id/etAmount"
-            android:textColor="@color/green_color_2"
+            <EditText
+                android:id="@+id/etFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kimden"
+                android:inputType="" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:inputType="numberDecimal"
-            android:text="0" />
+            float:fletPadding="10dp">
+
+            <EditText
+                android:id="@+id/etTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kime"
+                android:inputType="" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            float:fletPadding="10dp">
+
+            <EditText android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adet"
+                android:inputType="number" />
+        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
 
         <com.dd.processbutton.iml.ActionProcessButton
             android:id="@+id/btnSend"
@@ -55,7 +73,42 @@
             custom:pb_colorPressed="@color/blue_pressed"
             custom:pb_colorProgress="@color/purple_progress"
             custom:pb_textComplete="@string/TransferSuccess"
+            custom:pb_textError="@string/TransferError"
             custom:pb_textProgress="@string/TransferLoading" />
+        <!-- <EditText
+             android:id="@+id/etFrom"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="16dp"
+             android:inputType="textAutoComplete"
+             android:text="@string/dummy_from"
+             android:textColor="@color/green_color_2" />
+
+         <EditText
+             android:id="@+id/etTo"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="16dp"
+             android:inputType="textAutoComplete"
+             android:text="@string/dummy_to"
+             android:textColor="@color/green_color_2" />
+
+
+
+             <EditText
+                 android:id="@+id/etAmount"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="right"
+                 android:layout_marginBottom="16dp"
+                 android:gravity="right"
+                 android:inputType="numberDecimal"
+                 android:text="0"
+                 android:textColor="@color/green_color_2"
+                 android:layout_weight="5"/>
+
+       -->
+
 
     </LinearLayout>
 

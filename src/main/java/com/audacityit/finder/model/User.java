@@ -15,6 +15,7 @@ public class User {
     private String name;
     private String email;
     private String genderId;
+    private String userName;
 
     /**
      * @brief default constructor
@@ -24,6 +25,13 @@ public class User {
     }
 
     public static User getCurrentUser() {
+
+        if (currentUser == null) {
+            currentUser = new User();
+            currentUser.id = "1215616";
+            currentUser.setUserName("Aytekin");
+            currentUser.setName("Aytekin Ulaş");
+        }
         return currentUser;
     }
 
@@ -109,5 +117,13 @@ public class User {
      */
     public void setGenderId(String genderId) {
         this.genderId = genderId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

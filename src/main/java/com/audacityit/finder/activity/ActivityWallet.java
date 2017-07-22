@@ -28,6 +28,7 @@ import com.audacityit.finder.adapter.AdapterShoppingCart;
 import com.audacityit.finder.dialog.DialogTransfer;
 import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.SharedPref;
+import com.audacityit.finder.model.User;
 import com.audacityit.finder.util.Constants;
 import com.audacityit.finder.util.DatabaseHandler;
 
@@ -182,7 +183,7 @@ public class ActivityWallet extends AppCompatActivity {
                 //displayData();
                 dialog.dismiss();
 
-                DialogTransfer dialogTransfer=DialogTransfer.createNewDialog(ActivityWallet.this);
+                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForQuantity(ActivityWallet.this,model.sellerUsername, User.getCurrentUser().getUserName(),Integer.valueOf(qty.getText().toString()));
                 dialogTransfer.show();
 
             }

@@ -4,17 +4,31 @@ package com.audacityit.finder.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.audacityit.finder.R;
 import com.audacityit.finder.activity.ActivityWallet;
+import com.audacityit.finder.util.FloatLabel;
 import com.audacityit.finder.util.ProgressGenerator;
 import com.dd.processbutton.iml.ActionProcessButton;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
+
+//https://android-arsenal.com/details/1/3439
+//https://android-arsenal.com/tag/11?sort=created
+//https://github.com/barmstrong/bitcoin-android/
+//https://stackoverflow.com/questions/28232116/android-using-zxing-generate-qr-code
+//https://android-arsenal.com/details/1/4457
 
 public class DialogTransfer extends Dialog implements
         android.view.View.OnClickListener, ProgressGenerator.OnCompleteListener {
@@ -22,12 +36,28 @@ public class DialogTransfer extends Dialog implements
     public Activity c;
     public Dialog d;
     public ActionProcessButton btnSend;
-    public EditText etFrom, etTo;
+    public EditText etFrom, etTo, etAmount;
     public ProgressGenerator progressGenerator;
+    public ImageView imageView;
+    private final static int DIALOG_TYPE_QUANTITY = 1;
+    private final static int DIALOG_TYPE_COIN = 2;
 
 
-    public static DialogTransfer createNewDialog(Activity a) {
+    public static int DIALOG_TYPE = 0;
+    public static String FROM_NAME = "", TO_NAME = "";
+    public static int QUANTITY = 0;
+    public static float AMOUNT = 0;
+    public static DialogTransfer createNewDialogForQuantity(Activity a, String fromName, String toName, int quantity) {
         DialogTransfer dialogTransfer = new DialogTransfer(a);
+        /*Bundle args = new Bundle();
+        args.putInt("num", DIALOG_TYPE_QUANTITY);
+        dialogTransfer.setArguments(args);
+        */
+        DIALOG_TYPE = DIALOG_TYPE_QUANTITY;
+        FROM_NAME = fromName;
+        TO_NAME = toName;
+        QUANTITY = quantity;
+
         return dialogTransfer;
     }
 
@@ -44,6 +74,27 @@ public class DialogTransfer extends Dialog implements
         btnSend = (ActionProcessButton) findViewById(R.id.btnSend);
         etFrom = (EditText) findViewById(R.id.etFrom);
         etTo = (EditText) findViewById(R.id.etTo);
+        etAmount = (EditText) findViewById(R.id.etAmount);
+          imageView = (ImageView) findViewById(R.id.qrCode);
+        if (DIALOG_TYPE == DIALOG_TYPE_QUANTITY) {
+            etFrom.setText("@" +FROM_NAME);
+            etTo.setText("@" +TO_NAME);
+            etAmount.setText(String.valueOf(QUANTITY));
+
+            etFrom.setEnabled(false);
+            etTo.setEnabled(false);
+            etAmount.setEnabled(false);
+
+
+            try {
+                String str =FROM_NAME+":"+TO_NAME+":"+String.valueOf(QUANTITY);
+                Bitmap bitmap = encodeAsBitmap(str);
+                imageView.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+        }
+
         btnSend.setOnClickListener(this);
 
         progressGenerator = new ProgressGenerator(this);
@@ -94,6 +145,29 @@ public class DialogTransfer extends Dialog implements
             }
         }).start();
     }
-
-
+    public static int WHITE = 0xFFFFFFFF;
+    public static int BLACK = 0xFF000000;
+    public final static int WIDTH=500;
+    Bitmap encodeAsBitmap(String str) throws WriterException {
+        BitMatrix result;
+        try {
+            result = new MultiFormatWriter().encode(str,
+                    BarcodeFormat.QR_CODE, WIDTH, WIDTH, null);
+        } catch (IllegalArgumentException iae) {
+            // Unsupported format
+            return null;
+        }
+        int w = result.getWidth();
+        int h = result.getHeight();
+        int[] pixels = new int[w * h];
+        for (int y = 0; y < h; y++) {
+            int offset = y * w;
+            for (int x = 0; x < w; x++) {
+                pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
+        return bitmap;
+    }
 }
