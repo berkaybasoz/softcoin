@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="5 Coin"
+            android:text="5 SCoin"
             android:textColor="@color/colorPrice"
             android:textSize="@dimen/value_16sp"
             android:textStyle="bold"

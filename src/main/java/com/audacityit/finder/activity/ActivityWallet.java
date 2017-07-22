@@ -189,7 +189,7 @@ public class ActivityWallet extends AppCompatActivity {
                 displayData();
                 dialog.dismiss();
 
-                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForQuantity(ActivityWallet.this,model.sellerUsername, User.getCurrentUser().getUserName(),Integer.valueOf(qty.getText().toString()));
+                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForQuantity(ActivityWallet.this, User.getCurrentUser().getUserName(),model.sellerUsername,Integer.valueOf(qty.getText().toString()));
                 dialogTransfer.show();
 
             }

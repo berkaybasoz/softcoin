@@ -135,22 +135,22 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
                 }
                 categoryList.add(category);
             }
+            categoryListView.setAdapter(new CategoryAdapter(getActivity(), mCallbacks, categoryList));
+            categoryListView.setOnScrollListener(new ListViewScrollListener() {
+                @Override
+                public void onScrollUp() {
+                    showViews();
+                }
 
+                @Override
+                public void onScrollDown() {
+                    hideViews();
+                }
+            });
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    categoryListView.setAdapter(new CategoryAdapter(getActivity(), mCallbacks, categoryList));
-                    categoryListView.setOnScrollListener(new ListViewScrollListener() {
-                        @Override
-                        public void onScrollUp() {
-                            showViews();
-                        }
 
-                        @Override
-                        public void onScrollDown() {
-                            hideViews();
-                        }
-                    });
                 }
             });
 

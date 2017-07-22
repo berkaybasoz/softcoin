@@ -3,19 +3,17 @@ package com.audacityit.finder.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.audacityit.finder.R;
-import com.audacityit.finder.activity.ActivityWallet;
-import com.audacityit.finder.util.FloatLabel;
 import com.audacityit.finder.util.ProgressGenerator;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.google.zxing.BarcodeFormat;
@@ -38,15 +36,17 @@ public class DialogTransfer extends Dialog implements
     public ActionProcessButton btnSend;
     public EditText etFrom, etTo, etAmount;
     public ProgressGenerator progressGenerator;
-    public ImageView imageView;
+    public ImageView ivQRCode;
     private final static int DIALOG_TYPE_QUANTITY = 1;
     private final static int DIALOG_TYPE_COIN = 2;
-
+    public LinearLayout llSend, llOr;
+    public TextView btnOr;
 
     public static int DIALOG_TYPE = 0;
     public static String FROM_NAME = "", TO_NAME = "";
     public static int QUANTITY = 0;
-    public static float AMOUNT = 0;
+    public static float COIN = 0;
+
     public static DialogTransfer createNewDialogForQuantity(Activity a, String fromName, String toName, int quantity) {
         DialogTransfer dialogTransfer = new DialogTransfer(a);
         /*Bundle args = new Bundle();
@@ -57,6 +57,20 @@ public class DialogTransfer extends Dialog implements
         FROM_NAME = fromName;
         TO_NAME = toName;
         QUANTITY = quantity;
+
+        return dialogTransfer;
+    }
+
+    public static DialogTransfer createNewDialogForCoin(Activity a, String fromName, String toName, float coin) {
+        DialogTransfer dialogTransfer = new DialogTransfer(a);
+        /*Bundle args = new Bundle();
+        args.putInt("num", DIALOG_TYPE_QUANTITY);
+        dialogTransfer.setArguments(args);
+        */
+        DIALOG_TYPE = DIALOG_TYPE_COIN;
+        FROM_NAME = fromName;
+        TO_NAME = toName;
+        COIN = coin;
 
         return dialogTransfer;
     }
@@ -75,10 +89,30 @@ public class DialogTransfer extends Dialog implements
         etFrom = (EditText) findViewById(R.id.etFrom);
         etTo = (EditText) findViewById(R.id.etTo);
         etAmount = (EditText) findViewById(R.id.etAmount);
-          imageView = (ImageView) findViewById(R.id.qrCode);
+        ivQRCode = (ImageView) findViewById(R.id.qrCode);
+        llSend = (LinearLayout) findViewById(R.id.llSend);
+        llOr = (LinearLayout) findViewById(R.id.llOr);
+        btnOr = (TextView) findViewById(R.id.btnOr);
+
+        btnOr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (llSend.getVisibility() == View.GONE) {
+                    llSend.setVisibility(View.VISIBLE);
+                } else {
+                    llSend.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        etFrom.setText("@" + FROM_NAME);
+        etTo.setText("@" + TO_NAME);
+
         if (DIALOG_TYPE == DIALOG_TYPE_QUANTITY) {
-            etFrom.setText("@" +FROM_NAME);
-            etTo.setText("@" +TO_NAME);
+
+            llSend.setVisibility(View.GONE);
+
+
             etAmount.setText(String.valueOf(QUANTITY));
 
             etFrom.setEnabled(false);
@@ -87,12 +121,17 @@ public class DialogTransfer extends Dialog implements
 
 
             try {
-                String str =FROM_NAME+":"+TO_NAME+":"+String.valueOf(QUANTITY);
+                String str = FROM_NAME + ":" + TO_NAME + ":" + String.valueOf(QUANTITY);
                 Bitmap bitmap = encodeAsBitmap(str);
-                imageView.setImageBitmap(bitmap);
+                ivQRCode.setImageBitmap(bitmap);
             } catch (WriterException e) {
                 e.printStackTrace();
             }
+        } else {
+            etAmount.setHint("SCoin");
+            llSend.setVisibility(View.VISIBLE);
+            ivQRCode.setVisibility(View.GONE);
+            llOr.setVisibility(View.GONE);
         }
 
         btnSend.setOnClickListener(this);
@@ -145,9 +184,11 @@ public class DialogTransfer extends Dialog implements
             }
         }).start();
     }
+
     public static int WHITE = 0xFFFFFFFF;
     public static int BLACK = 0xFF000000;
-    public final static int WIDTH=500;
+    public final static int WIDTH = 500;
+
     Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         try {
