@@ -1,6 +1,5 @@
 package com.audacityit.finder.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import java.util.Locale;
 
 import com.audacityit.finder.R;
 import com.audacityit.finder.adapter.AdapterShoppingCart;
+import com.audacityit.finder.dialog.DialogCoinYukle;
 import com.audacityit.finder.dialog.DialogTransfer;
 import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.SharedPref;
@@ -55,14 +55,37 @@ public class ActivityWallet extends AppCompatActivity {
         iniComponent();
 
 
-        final TextView aktarButton = (TextView) findViewById(R.id.btnWeb);
-        aktarButton.setOnClickListener(new View.OnClickListener() {
+        final TextView btnAktar = (TextView) findViewById(R.id.btnAktar);
+        btnAktar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForCoin(ActivityWallet.this, User.getCurrentUser().getUserName(),"",0);
+                DialogTransfer dialogTransfer = DialogTransfer.createNewDialogForCoin(ActivityWallet.this, User.getCurrentUser().getUserName(), "", 0);
                 dialogTransfer.show();
             }
         });
+
+        final TextView btnYukle = (TextView) findViewById(R.id.btnYukle);
+        btnYukle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                initPaymentType();
+            }
+        });
+        User.getCurrentUser().subscribeUserCoinChangedListeners(new User.IUserCoinChangedListener() {
+            @Override
+            public void onCoinChanged(float oldCoin, final float newCoin) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            displayCoin(newCoin);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
+
 
     private void iniComponent() {
         parent_view = findViewById(android.R.id.content);
@@ -71,6 +94,7 @@ public class ActivityWallet extends AppCompatActivity {
         price_total = (TextView) findViewById(R.id.price_total);
         View btnWallet = (View) findViewById(R.id.btnWallet);
         btnWallet.setVisibility(View.GONE);
+        displayCoin(User.getCurrentUser().getCoin());
     }
 
     private void initToolbar() {
@@ -82,6 +106,10 @@ public class ActivityWallet extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(R.string.title_activity_history);
         //Tools.systemBarLolipop(this);
+    }
+
+    public void displayCoin(float coin) {
+        price_total.setText(String.valueOf(coin) + " " + Constants.COIN);
     }
 
     @Override
@@ -153,9 +181,11 @@ public class ActivityWallet extends AppCompatActivity {
             _price_total = _price_total + (c.amount * c.price_item);
         }
         _price_total_tax_str = String.format(Locale.US, "%1$,.2f", _price_total);
-        price_total.setText(" " + _price_total_tax_str + " " + Constants.COIN);
+        //price_total.setText(" " + _price_total_tax_str + " " + Constants.COIN);
     }
+
     Integer usingAmount = 1;
+
     private void dialogCartAction(final Cart model) {
         usingAmount = 1;
         final Dialog dialog = new Dialog(ActivityWallet.this);
@@ -167,9 +197,9 @@ public class ActivityWallet extends AppCompatActivity {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         ((TextView) dialog.findViewById(R.id.title)).setText(model.product_name);
-        ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
+        ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount - usingAmount));
         final TextView qty = (TextView) dialog.findViewById(R.id.quantity);
-        qty.setText( usingAmount + "");
+        qty.setText(usingAmount + "");
 
         ((ImageView) dialog.findViewById(R.id.img_decrease)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,17 +207,17 @@ public class ActivityWallet extends AppCompatActivity {
                 if (usingAmount > 1) {
                     usingAmount -= 1;
                     qty.setText(usingAmount + "");
-                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
+                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount - usingAmount));
                 }
             }
         });
         ((ImageView) dialog.findViewById(R.id.img_increase)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (usingAmount < model.amount ) {
+                if (usingAmount < model.amount) {
                     usingAmount += 1;
                     qty.setText(usingAmount + "");
-                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount-usingAmount));
+                    ((TextView) dialog.findViewById(R.id.stock)).setText(getString(R.string.stock) + (model.amount - usingAmount));
                 }
             }
         });
@@ -199,7 +229,7 @@ public class ActivityWallet extends AppCompatActivity {
                 displayData();
                 dialog.dismiss();
 
-                DialogTransfer dialogTransfer=DialogTransfer.createNewDialogForQuantity(ActivityWallet.this, User.getCurrentUser().getUserName(),model.sellerUsername,Integer.valueOf(qty.getText().toString()));
+                DialogTransfer dialogTransfer = DialogTransfer.createNewDialogForQuantity(ActivityWallet.this, User.getCurrentUser().getUserName(), model.sellerUsername, Integer.valueOf(qty.getText().toString()));
                 dialogTransfer.show();
 
             }
@@ -231,6 +261,23 @@ public class ActivityWallet extends AppCompatActivity {
             }
         });
         builder.setNegativeButton(R.string.CANCEL, null);
+        builder.show();
+    }
+
+
+    public void initPaymentType() {
+        CharSequence colors[] = new CharSequence[]{"HESAPTAN", "KREDİ KARTI", "BITCOIN", "PAY-PAL"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Yükleme için ödeme tipi seçiniz");
+        builder.setItems(colors, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DialogCoinYukle dialogKart = DialogCoinYukle.createNewDialog(ActivityWallet.this);
+                dialogKart.show();
+
+            }
+        });
         builder.show();
     }
 

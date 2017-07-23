@@ -4,6 +4,8 @@ package com.audacityit.finder.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -84,6 +86,7 @@ public class DialogTransfer extends Dialog implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.dialog_transfer);
         btnSend = (ActionProcessButton) findViewById(R.id.btnSend);
         etFrom = (EditText) findViewById(R.id.etFrom);

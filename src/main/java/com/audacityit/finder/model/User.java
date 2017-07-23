@@ -1,5 +1,7 @@
 package com.audacityit.finder.model;
 
+import java.util.ArrayList;
+
 /**
  * @author Audacity IT Solutions Ltd.
  * @class User
@@ -16,6 +18,7 @@ public class User {
     private String email;
     private String genderId;
     private String userName;
+    private float coin;
 
     /**
      * @brief default constructor
@@ -125,5 +128,37 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public float getCoin() {
+        return coin;
+    }
+
+    public void setCoin(float coin) {
+        float oldCoin = coin;
+        this.coin = coin;
+        notifyCoinChanged(oldCoin, coin);
+
+    }
+
+    private ArrayList<IUserCoinChangedListener> userCoinChangedListeners;
+
+    public void subscribeUserCoinChangedListeners(IUserCoinChangedListener listener) {
+        if (userCoinChangedListeners == null)
+            userCoinChangedListeners = new ArrayList<>();
+
+        userCoinChangedListeners.add(listener);
+    }
+
+    public void notifyCoinChanged(float oldCoin, float newCoin) {
+        if (userCoinChangedListeners != null) {
+            for (IUserCoinChangedListener listener:userCoinChangedListeners) {
+                listener.onCoinChanged(oldCoin, coin);
+            }
+        }
+    }
+
+    public interface IUserCoinChangedListener {
+        void onCoinChanged(float oldCoin, float newCoin);
     }
 }

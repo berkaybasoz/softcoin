@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ import com.audacityit.finder.model.Cart;
 import com.audacityit.finder.model.Comment;
 import com.audacityit.finder.model.Item;
 import com.audacityit.finder.model.Order;
+import com.audacityit.finder.model.User;
 import com.audacityit.finder.util.CustomRatingBar;
 import com.audacityit.finder.util.DatabaseHandler;
 import com.audacityit.finder.util.ExpandableTextView;
@@ -642,7 +644,88 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
     @Override
     public void onResultItemSelected(final Item item) {
         if (isUserSignedIn(getActivity())) {
-            /*final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+
+            if (User.getCurrentUser().getCoin() <= 0) {
+
+                // Snackbar.
+                Intent i = new Intent(getContext(), ActivityWallet.class);
+                startActivity(i);
+                return;
+            }
+
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Satın Al?")
+                    .setContentText(item.getTitle() + " ürününü satın almak istiyor musunuz?")
+                    .setConfirmText("Evet!")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(final SweetAlertDialog sDialog) {
+                            // reuse previous dialog instance
+
+                            sDialog.setTitleText("İşlem Başarılı!")
+                                    .setContentText(item.getTitle() + " ürünü satın aldınız!")
+                                    .setConfirmText("Satın Aldıklarımı Gör")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                                            sDialog.dismiss();
+                                            DatabaseHandler db = new DatabaseHandler(getContext());
+
+
+                                            try {
+                                                Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
+                                                Long stock = orderId;
+                                                int amount = Integer.parseInt(item.getTotalQuantity());
+                                                Cart exist = db.getCart(Long.parseLong(item.getId()));
+
+                                                if (exist != null && exist.id > 0) {
+                                                    exist.amount += amount;
+                                                    db.updateCart(exist);
+                                                } else {
+                                                    exist = new Cart(Long.parseLong(item.getId()),
+                                                            item.getSellerUserName(),
+                                                            item.getSellerName(),
+                                                            item.getSellerName() + " - " + item.getTitle(),
+                                                            item.getImageThumbUrls()[0],
+                                                            amount,
+                                                            stock,
+                                                            Float.parseFloat(item.getPrice()),
+                                                            System.currentTimeMillis(),
+                                                            Integer.parseInt(item.getTotalQuantity()),
+                                                            Integer.parseInt(item.getLeavesQuantity()));
+                                                    db.saveCart(exist);
+                                                }
+                                                float currentCoin = User.getCurrentUser().getCoin();
+                                                currentCoin = currentCoin - Float.parseFloat(item.getPrice());
+                                                User.getCurrentUser().setCoin(currentCoin);
+
+                                                Intent i = new Intent(getContext(), ActivityWallet.class);
+                                                startActivity(i);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    })
+                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        }
+                    })
+                    .setCancelText("İptal")
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+
+                            sDialog.cancel();
+                        }
+                    })
+                    .show();
+        } else {
+            Toast.makeText(getActivity(), getResources().getString(R.string.sign_in_text), Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+ /*final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
                     .setTitleText("Loading");
             pDialog.show();
             pDialog.setCancelable(false);
@@ -682,83 +765,3 @@ public class DetailViewFragment extends Fragment implements ProductListCallbacks
                             .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                 }
             }.start();*/
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Satın Al?")
-                    .setContentText(item.getTitle() + " ürününü satın almak istiyor musunuz?")
-                    .setConfirmText("Evet!")
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(final SweetAlertDialog sDialog) {
-                            // reuse previous dialog instance
-
-                            sDialog.setTitleText("İşlem Başarılı!")
-                                    .setContentText(item.getTitle() + " ürünü satın aldınız!")
-                                    .setConfirmText("Satın Aldıklarımı Gör")
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-
-                                            sDialog.dismiss();
-                                            DatabaseHandler db = new DatabaseHandler(getContext());
-
-                                            /*Order order = new Order(++Order.TMP_ID,item.getSellerName()+" - "+ item.getTitle(), "0");
-                                            Cart c=new Cart();
-                                            c.image=item.getImageThumbUrls()[0];
-                                            c.price_item=Float.parseFloat(item.getPrice());
-                                            c.order_id = order.id;
-                                            order.cart_list.add(c);
-
-                                            db.saveOrder(order);
-
-                                            Intent i = new Intent(getContext(), ActivityOrderHistory.class);
-                                            startActivity(i);*/
-                                            try {
-                                                Long orderId = Long.parseLong(String.valueOf(++Order.TMP_ID));
-                                                Long stock = orderId;
-                                                int amount = Integer.parseInt(item.getTotalQuantity());
-                                                Cart exist = db.getCart(Long.parseLong(item.getId()));
-
-                                                if (exist != null && exist.id > 0) {
-                                                    exist.amount += amount;
-                                                    db.updateCart(exist);
-                                                } else {
-                                                    exist = new Cart(Long.parseLong(item.getId()),
-                                                            item.getSellerUserName(),
-                                                            item.getSellerName(),
-                                                            item.getSellerName() + " - " + item.getTitle(),
-                                                            item.getImageThumbUrls()[0],
-                                                            amount,
-                                                            stock,
-                                                            Float.parseFloat(item.getPrice()),
-                                                            System.currentTimeMillis(),
-                                                            Integer.parseInt(item.getTotalQuantity()),
-                                                            Integer.parseInt(item.getLeavesQuantity()));
-                                                    db.saveCart(exist);
-                                                }
-
-
-                                                Intent i = new Intent(getContext(), ActivityWallet.class);
-                                                startActivity(i);
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-                                    })
-                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        }
-                    })
-                    .setCancelText("İptal")
-                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-
-                            sDialog.cancel();
-                        }
-                    })
-                    .show();
-        } else {
-            Toast.makeText(getActivity(), getResources().getString(R.string.sign_in_text), Toast.LENGTH_SHORT).show();
-        }
-    }
-}

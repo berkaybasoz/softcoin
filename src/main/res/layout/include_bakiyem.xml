@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llBakiye"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
@@ -45,8 +44,9 @@
     </LinearLayout>
 
     <LinearLayout
-           android:layout_weight="1"
-        android:layout_height="wrap_content" android:layout_width="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -54,17 +54,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
-
             android:gravity="center"
-            android:text="330 SCoin"
+            android:text="0 SCoin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/value_25sp" />
 
-        <TextView android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
             android:id="@+id/btnWallet"
             style="@style/optionButtonGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Cüzdanım" />
     </LinearLayout>
 

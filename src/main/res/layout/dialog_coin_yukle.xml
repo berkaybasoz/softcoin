@@ -17,39 +17,6 @@
         android:padding="10dp">
 
 
-        <ImageView
-            android:id="@+id/qrCode"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
-
-        <LinearLayout
-            android:id="@+id/llOr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/value_10dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="@color/green_color" />
-
-            <TextView
-                android:id="@+id/btnOr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:maxLines="2"
-                android:text="ya da"
-                android:textColor="@color/green_color"
-                android:textSize="@dimen/value_18sp" />
-
-
-        </LinearLayout>
-
         <LinearLayout
             android:id="@+id/llSend"
             android:layout_width="match_parent"
@@ -62,58 +29,96 @@
                 float:fletPadding="10dp">
 
                 <EditText
-                    android:id="@+id/etFrom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:hint="Kimden"
-                    android:inputType="" />
-            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
-
-            <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                float:fletPadding="10dp">
-
-                <EditText
-                    android:id="@+id/etTo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:hint="Kime"
-                    android:inputType="" />
-            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
-
-            <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                float:fletPadding="10dp">
-
-                <EditText
                     android:id="@+id/etAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:hint="Adet"
-                    android:inputType="number" />
+                    android:hint="Tutar"
+                    android:inputType="numberDecimal" />
             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                float:fletPadding="10dp">
+
+                <EditText
+                    android:id="@+id/etAd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Ad Soyad"
+                    android:inputType="" />
+            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                float:fletPadding="10dp">
+
+                <EditText
+                    android:id="@+id/etKart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Kart No"
+                    android:inputType="" />
+            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    float:fletPadding="10dp">
+
+                    <EditText
+                        android:id="@+id/etTarih"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:hint="Tarih"
+                        android:inputType=""
+                          />
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    float:fletPadding="10dp">
+
+                    <EditText
+                        android:id="@+id/etCVV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:hint="CVV"
+                        android:inputType=""
+                         />
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+            </LinearLayout>
 
             <com.dd.processbutton.iml.ActionProcessButton
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/Transfer"
+                android:text="Yükle"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 custom:pb_colorComplete="@color/green_complete"
                 custom:pb_colorNormal="@color/blue_normal"
                 custom:pb_colorPressed="@color/blue_pressed"
                 custom:pb_colorProgress="@color/purple_progress"
-                custom:pb_textComplete="@string/TransferSuccess"
+                custom:pb_textComplete="Yüklendi"
                 custom:pb_textError="@string/TransferError"
-                custom:pb_textProgress="@string/TransferLoading" />
+                custom:pb_textProgress="Yükleniyor" />
         </LinearLayout>
 
     </LinearLayout>

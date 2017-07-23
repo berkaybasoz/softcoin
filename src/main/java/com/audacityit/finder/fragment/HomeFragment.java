@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,11 +19,12 @@ import com.audacityit.finder.activity.ActivityWallet;
 import com.audacityit.finder.activity.HomeActivity;
 import com.audacityit.finder.adapter.CategoryAdapter;
 import com.audacityit.finder.model.Category;
+import com.audacityit.finder.model.User;
 import com.audacityit.finder.util.ApiHandler;
+import com.audacityit.finder.util.Constants;
 import com.audacityit.finder.util.ListViewScrollListener;
 import com.audacityit.finder.util.UtilMethods;
 import com.audacityit.finder.util.UtilMethods.InternetConnectionListener;
-import com.google.android.gms.vision.text.Text;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +37,7 @@ import static com.audacityit.finder.util.Constants.JF_ID;
 import static com.audacityit.finder.util.Constants.JF_TITLE;
 import static com.audacityit.finder.util.UtilMethods.loadJSONFromAsset;
 import static com.audacityit.finder.util.UtilMethods.showNoInternetDialog;
+import static com.google.android.gms.internal.zzagz.runOnUiThread;
 
 /**
  * @author Audacity IT Solutions Ltd.
@@ -54,7 +55,7 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
     private LinearLayout llBakiye;
     private InternetConnectionListener internetConnectionListener;
     private View btnWallet;
-
+    private TextView price_total;
     public HomeFragment() {
 
     }
@@ -87,7 +88,28 @@ public class HomeFragment extends Fragment implements InternetConnectionListener
         llBakiye = (LinearLayout) rootView.findViewById(R.id.llBakiye);
         btnWallet = (View) llBakiye.findViewById(R.id.btnWallet);
         btnWallet.setOnClickListener(this);
+        price_total = (TextView) rootView.findViewById(R.id.price_total);
+        displayCoin(User.getCurrentUser().getCoin());
+        User.getCurrentUser().subscribeUserCoinChangedListeners(new User.IUserCoinChangedListener() {
+            @Override
+            public void onCoinChanged(float oldCoin, final float newCoin) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            displayCoin(newCoin);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
         return rootView;
+    }
+
+    public void displayCoin(float coin) {
+        price_total.setText(String.valueOf(coin) + " " + Constants.COIN);
     }
 
     @Override
